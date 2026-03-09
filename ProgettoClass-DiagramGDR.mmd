@@ -1,10 +1,22 @@
 classDiagram
 direction TB
+    class Gestore {
+	    -int n_Turno
+	    -int punteggio
+	    Gestore(int n_Turno, int punteggio)
+	    +generaIncontro(Incontro incontro)
+	    +aggiungiPunteggio()
+	    +rimuoviPunteggio()
+    }
+
     class Personaggio {
 	    -String nome
+	    -int attack
 	    -int salute
 	    -int fame
 	    -int sete
+	    Personaggio(String nome, int salute, int fame, int sete)
+	    +aumentaAttacco()
 	    +bevi()
 	    +mangia()
 	    +abilitàSpeciale()
@@ -12,43 +24,51 @@ direction TB
 	    +recuperaVita()
     }
 
-    class Oggetti {
-	    -String nome
-	    -String effetto
-	    +usa()
-    }
-
-    class SelezionePersonaggio {
-	    +MostraPersonaggiDisponibili()
-    }
-
-    class Gestore {
-	    -int n_Turno
-	    -int punteggio
-	    +generaIncontro(Incontro incontro)
-	    +aggiungiPunteggio()
-	    +rimuoviPunteggio()
+    class Incontro {
+	    -String tipoIncontro
+	    Incontro(String tipoIncontro)
     }
 
     class Enemy {
 	    -String nome
 	    -int salute
+	    -boolean perdiOggetto
+	    -String oggettoPerso
 	    -int danno
+	    Enemy(String nome, int salute, int danno)
 	    +attack()
+	    +perdiSalute()
     }
 
-    class Incontro {
-	    -String tipoIncontro
-	    +interagisci(Personaggio p)
+    class fileManager {
+	    +salvaPartita()
+	    +caricaPartita()
     }
 
-    class Grafica {
-	    +mostraPersonaggioScelto(Personaggio personaggio)
+    class Oggetto {
+	    -String nome
+	    -String effetto
+	    -int usaSpazio
+	    Oggetto(String nome, String effetto)
+	    +usa()
+	    +getNome()
+	    +getEffetto()
+	    +getSpazioUsato()
+    }
+
+    class Inventario {
+	    -int capienzaInventario
+	    -Boolean mettiOggetto
+	    Inventario(int capienzaInventario, Boolean mettiOggetto)
+	    +setCapienza(Oggetto o)
+	    +getCapienzaInventario()
+	    +lasciaCadereOggetto(Oggetto o)
     }
 
     Gestore ..> Personaggio
-    Gestore ..> Grafica
-    SelezionePersonaggio "1" --> "1" Personaggio
-    Enemy --|> Incontro
-    Oggetti --|> Incontro
+    Enemy "1" --|> "1" Incontro
+    Oggetto "1" --|> "1" Incontro
     Gestore ..> Incontro
+    Gestore ..> fileManager
+    Personaggio --o Inventario
+    Inventario "1" --o "*" Oggetto
