@@ -6,18 +6,19 @@ package progettogdr;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 /**
  *
  * @author arcaleni.daniele2
  */
 public class Grafica extends javax.swing.JFrame {
-    
+    private JPanel selezionato = null;
 
     /**
      * Creates new form Grafica
      */
     public Grafica() {
-       setTitle("Selezione Personaggio");
+        setTitle("Selezione Personaggio");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(640, 480);
         setLocationRelativeTo(null);
@@ -25,26 +26,26 @@ public class Grafica extends javax.swing.JFrame {
         PanelScegliPersonaggio = new JPanel(null);
         PanelScegliPersonaggio.setBackground(new Color(255, 255, 204));
 
-        // PanelPersonaggio1 con JLabel che ridimensiona immagine al 60%
+        // PANEL 1: immagine ridimensionata
         PanelPersonaggio1 = new JPanel(new BorderLayout());
-        JLabel label = new JLabel() {
+        JLabel label1 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"));
-                int imgWidth = (int)(getWidth() * 0.8);
-                int imgHeight = (int)(getHeight() * 0.8);
+                int imgWidth = (int)(getWidth() * 0.6);
+                int imgHeight = (int)(getHeight() * 0.6);
                 Image img = icon.getImage().getScaledInstance(imgWidth, imgHeight, Image.SCALE_SMOOTH);
                 int x = (getWidth() - imgWidth) / 2;
                 int y = (getHeight() - imgHeight) / 2;
                 g.drawImage(img, x, y, imgWidth, imgHeight, this);
             }
         };
-        PanelPersonaggio1.add(label, BorderLayout.CENTER);
+        PanelPersonaggio1.add(label1, BorderLayout.CENTER);
         PanelPersonaggio1.setBounds(25, 90, 150, 200);
         PanelScegliPersonaggio.add(PanelPersonaggio1);
 
-        // PanelPersonaggio2 e 3
+        // PANEL 2 e 3 come box colorati
         PanelPersonaggio2 = new JPanel();
         PanelPersonaggio2.setBackground(Color.BLACK);
         PanelPersonaggio2.setBounds(230, 90, 160, 200);
@@ -54,20 +55,40 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio3.setBackground(Color.GRAY);
         PanelPersonaggio3.setBounds(463, 90, 140, 200);
         PanelScegliPersonaggio.add(PanelPersonaggio3);
-
-        // Bottone
-        BottoneSceltaPersonaggio = new JButton("Scegli");
+    
+        // Bottone Gioca (inizialmente disabilitato)
+        BottoneSceltaPersonaggio = new JButton("Gioca");
         BottoneSceltaPersonaggio.setBounds(250, 340, 119, 23);
+        BottoneSceltaPersonaggio.setEnabled(false);
         BottoneSceltaPersonaggio.addActionListener(e -> {
-            PanelScegliPersonaggio.setVisible(false);
-            BottoneSceltaPersonaggio.setVisible(false);
-            PanelPersonaggio1.setVisible(false);
-            PanelPersonaggio2.setVisible(false);
-            PanelPersonaggio3.setVisible(false);
+
         });
-        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
+                PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
+        MouseAdapter selezioneListener = new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                selezionato = (JPanel)e.getSource();
+                evidenziaSelezione();
+                BottoneSceltaPersonaggio.setEnabled(true);
+            }
+        };
+
+        PanelPersonaggio1.addMouseListener(selezioneListener);
+        PanelPersonaggio2.addMouseListener(selezioneListener);
+        PanelPersonaggio3.addMouseListener(selezioneListener);
 
         add(PanelScegliPersonaggio);
+    }      
+    private void evidenziaSelezione(){
+        // Reset bordi
+        PanelPersonaggio1.setBorder(null);
+        PanelPersonaggio2.setBorder(null);
+        PanelPersonaggio3.setBorder(null);
+
+        // Evidenzia quello selezionato
+        if (selezionato != null) {
+            selezionato.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -122,11 +143,11 @@ public class Grafica extends javax.swing.JFrame {
             .addGroup(PanelPersonaggio1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         PanelScegliPersonaggio.add(PanelPersonaggio1);
-        PanelPersonaggio1.setBounds(25, 90, 150, 200);
+        PanelPersonaggio1.setBounds(25, 90, 240, 270);
 
         javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
         PanelPersonaggio3.setLayout(PanelPersonaggio3Layout);
@@ -190,7 +211,6 @@ public class Grafica extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Grafica().setVisible(true));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BottoneSceltaPersonaggio;
