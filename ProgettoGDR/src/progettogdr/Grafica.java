@@ -4,19 +4,70 @@
  */
 package progettogdr;
 
+import javax.swing.*;
+import java.awt.*;
 /**
  *
  * @author arcaleni.daniele2
  */
 public class Grafica extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Grafica.class.getName());
 
     /**
      * Creates new form Grafica
      */
     public Grafica() {
-        initComponents();
+       setTitle("Selezione Personaggio");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(640, 480);
+        setLocationRelativeTo(null);
+
+        PanelScegliPersonaggio = new JPanel(null);
+        PanelScegliPersonaggio.setBackground(new Color(255, 255, 204));
+
+        // PanelPersonaggio1 con JLabel che ridimensiona immagine al 60%
+        PanelPersonaggio1 = new JPanel(new BorderLayout());
+        JLabel label = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"));
+                int imgWidth = (int)(getWidth() * 0.8);
+                int imgHeight = (int)(getHeight() * 0.8);
+                Image img = icon.getImage().getScaledInstance(imgWidth, imgHeight, Image.SCALE_SMOOTH);
+                int x = (getWidth() - imgWidth) / 2;
+                int y = (getHeight() - imgHeight) / 2;
+                g.drawImage(img, x, y, imgWidth, imgHeight, this);
+            }
+        };
+        PanelPersonaggio1.add(label, BorderLayout.CENTER);
+        PanelPersonaggio1.setBounds(25, 90, 150, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio1);
+
+        // PanelPersonaggio2 e 3
+        PanelPersonaggio2 = new JPanel();
+        PanelPersonaggio2.setBackground(Color.BLACK);
+        PanelPersonaggio2.setBounds(230, 90, 160, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio2);
+
+        PanelPersonaggio3 = new JPanel();
+        PanelPersonaggio3.setBackground(Color.GRAY);
+        PanelPersonaggio3.setBounds(463, 90, 140, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio3);
+
+        // Bottone
+        BottoneSceltaPersonaggio = new JButton("Scegli");
+        BottoneSceltaPersonaggio.setBounds(250, 340, 119, 23);
+        BottoneSceltaPersonaggio.addActionListener(e -> {
+            PanelScegliPersonaggio.setVisible(false);
+            BottoneSceltaPersonaggio.setVisible(false);
+            PanelPersonaggio1.setVisible(false);
+            PanelPersonaggio2.setVisible(false);
+            PanelPersonaggio3.setVisible(false);
+        });
+        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
+
+        add(PanelScegliPersonaggio);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,8 +81,9 @@ public class Grafica extends javax.swing.JFrame {
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio1 = new javax.swing.JPanel();
-        BottoneSceltaPersonaggio = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         PanelPersonaggio3 = new javax.swing.JPanel();
+        BottoneSceltaPersonaggio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,29 +96,51 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio2.setLayout(PanelPersonaggio2Layout);
         PanelPersonaggio2Layout.setHorizontalGroup(
             PanelPersonaggio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
         PanelPersonaggio2Layout.setVerticalGroup(
             PanelPersonaggio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
 
         PanelScegliPersonaggio.add(PanelPersonaggio2);
-        PanelPersonaggio2.setBounds(210, 300, 140, 100);
+        PanelPersonaggio2.setBounds(230, 90, 160, 200);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
 
         javax.swing.GroupLayout PanelPersonaggio1Layout = new javax.swing.GroupLayout(PanelPersonaggio1);
         PanelPersonaggio1.setLayout(PanelPersonaggio1Layout);
         PanelPersonaggio1Layout.setHorizontalGroup(
             PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPersonaggio1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         PanelPersonaggio1Layout.setVerticalGroup(
             PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(PanelPersonaggio1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         PanelScegliPersonaggio.add(PanelPersonaggio1);
-        PanelPersonaggio1.setBounds(25, 90, 100, 100);
+        PanelPersonaggio1.setBounds(25, 90, 150, 200);
+
+        javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
+        PanelPersonaggio3.setLayout(PanelPersonaggio3Layout);
+        PanelPersonaggio3Layout.setHorizontalGroup(
+            PanelPersonaggio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+        PanelPersonaggio3Layout.setVerticalGroup(
+            PanelPersonaggio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+
+        PanelScegliPersonaggio.add(PanelPersonaggio3);
+        PanelPersonaggio3.setBounds(463, 90, 140, 200);
 
         BottoneSceltaPersonaggio.setText("Scegli");
         BottoneSceltaPersonaggio.addActionListener(new java.awt.event.ActionListener() {
@@ -75,31 +149,17 @@ public class Grafica extends javax.swing.JFrame {
             }
         });
         PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
-        BottoneSceltaPersonaggio.setBounds(220, 340, 119, 23);
-
-        javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
-        PanelPersonaggio3.setLayout(PanelPersonaggio3Layout);
-        PanelPersonaggio3Layout.setHorizontalGroup(
-            PanelPersonaggio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        PanelPersonaggio3Layout.setVerticalGroup(
-            PanelPersonaggio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        PanelScegliPersonaggio.add(PanelPersonaggio3);
-        PanelPersonaggio3.setBounds(473, 90, 100, 100);
+        BottoneSceltaPersonaggio.setBounds(250, 370, 119, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
         );
 
         pack();
@@ -118,32 +178,26 @@ public class Grafica extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        SwingUtilities.invokeLater(() -> new Grafica().setVisible(true));
+    
+    
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new Grafica().setVisible(true));
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BottoneSceltaPersonaggio;
     private javax.swing.JPanel PanelPersonaggio1;
     private javax.swing.JPanel PanelPersonaggio2;
     private javax.swing.JPanel PanelPersonaggio3;
     private javax.swing.JPanel PanelScegliPersonaggio;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
