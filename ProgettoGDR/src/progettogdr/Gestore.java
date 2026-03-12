@@ -9,5 +9,17 @@ package progettogdr;
  * @author arcaleni.daniele2
  */
 public class Gestore {
+    private int punteggio;
     
+    public Gestore(int punteggio){
+        this.punteggio = punteggio;
+    }
+    
+    public int getPunteggio(){
+        return punteggio;
+    }
+    
+    public void setPunteggio(int punteggio){
+        this.punteggio += punteggio;
+    }
 }

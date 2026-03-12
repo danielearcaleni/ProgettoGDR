@@ -32,13 +32,30 @@ public class Grafica extends javax.swing.JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
+
                 ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"));
-                int imgWidth = (int)(getWidth() * 0.6);
-                int imgHeight = (int)(getHeight() * 0.6);
-                Image img = icon.getImage().getScaledInstance(imgWidth, imgHeight, Image.SCALE_SMOOTH);
-                int x = (getWidth() - imgWidth) / 2;
-                int y = (getHeight() - imgHeight) / 2;
-                g.drawImage(img, x, y, imgWidth, imgHeight, this);
+                Image img = icon.getImage();
+
+                int panelW = getWidth();
+                int panelH = getHeight();
+
+                int margin = 15;
+
+                int availableW = panelW - margin * 2;
+                int availableH = panelH - margin * 2;
+
+                int imgW = img.getWidth(null);
+                int imgH = img.getHeight(null);
+
+                double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
+
+                int newW = (int) (imgW * scale);
+                int newH = (int) (imgH * scale);
+
+                int x = (panelW - newW) / 2 + 10;
+                int y = (panelH - newH) / 2;
+
+                g.drawImage(img, x, y, newW, newH, this);
             }
         };
         PanelPersonaggio1.add(label1, BorderLayout.CENTER);
@@ -101,10 +118,11 @@ public class Grafica extends javax.swing.JFrame {
 
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
-        PanelPersonaggio1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         PanelPersonaggio3 = new javax.swing.JPanel();
         BottoneSceltaPersonaggio = new javax.swing.JButton();
+        PanelPersonaggio1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtOggettoPerso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,28 +144,6 @@ public class Grafica extends javax.swing.JFrame {
 
         PanelScegliPersonaggio.add(PanelPersonaggio2);
         PanelPersonaggio2.setBounds(230, 90, 160, 200);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
-
-        javax.swing.GroupLayout PanelPersonaggio1Layout = new javax.swing.GroupLayout(PanelPersonaggio1);
-        PanelPersonaggio1.setLayout(PanelPersonaggio1Layout);
-        PanelPersonaggio1Layout.setHorizontalGroup(
-            PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPersonaggio1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        PanelPersonaggio1Layout.setVerticalGroup(
-            PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelPersonaggio1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        PanelScegliPersonaggio.add(PanelPersonaggio1);
-        PanelPersonaggio1.setBounds(25, 90, 240, 270);
 
         javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
         PanelPersonaggio3.setLayout(PanelPersonaggio3Layout);
@@ -171,6 +167,31 @@ public class Grafica extends javax.swing.JFrame {
         });
         PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
         BottoneSceltaPersonaggio.setBounds(250, 370, 119, 23);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
+
+        javax.swing.GroupLayout PanelPersonaggio1Layout = new javax.swing.GroupLayout(PanelPersonaggio1);
+        PanelPersonaggio1.setLayout(PanelPersonaggio1Layout);
+        PanelPersonaggio1Layout.setHorizontalGroup(
+            PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPersonaggio1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        PanelPersonaggio1Layout.setVerticalGroup(
+            PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelPersonaggio1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        PanelScegliPersonaggio.add(PanelPersonaggio1);
+        PanelPersonaggio1.setBounds(20, 90, 160, 200);
+
+        txtOggettoPerso.setText("perdiOggetto");
+        PanelScegliPersonaggio.add(txtOggettoPerso);
+        txtOggettoPerso.setBounds(270, 50, 320, 16);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -219,5 +240,6 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPersonaggio3;
     private javax.swing.JPanel PanelScegliPersonaggio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel txtOggettoPerso;
     // End of variables declaration//GEN-END:variables
 }

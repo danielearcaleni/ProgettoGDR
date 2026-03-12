@@ -44,6 +44,6 @@ public class Personaggio {
     }
     
     public void abilitaSpeciale(){
-        //completala
+        //completala cosa ci metto?
     }
 }

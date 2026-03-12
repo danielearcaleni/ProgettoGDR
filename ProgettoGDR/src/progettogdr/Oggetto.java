@@ -9,5 +9,13 @@ package progettogdr;
  * @author arcaleni.daniele2
  */
 public class Oggetto {
+    private String nomeOggetto;
     
+    public Oggetto(String nomeOggetto){
+        this.nomeOggetto = nomeOggetto;
+    }
+    
+    public String getNomeOggetto(){
+        return nomeOggetto;
+    }
 }
