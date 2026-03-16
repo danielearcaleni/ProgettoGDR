@@ -15,6 +15,7 @@ import java.awt.event.*;
 public class Grafica extends javax.swing.JFrame {
 
     private JPanel selezionato = null;
+    private String player = "";
 
     /**
      * Creates new form Grafica
@@ -28,112 +29,111 @@ public class Grafica extends javax.swing.JFrame {
         PanelScegliPersonaggio = new JPanel(null);
         PanelScegliPersonaggio.setBackground(new Color(255, 255, 204));
 
-
         // PANEL 1: immagine ridimensionata
-    PanelPersonaggio1 = new JPanel(new BorderLayout());
-    JLabel label1 = new JLabel() {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
+        PanelPersonaggio1 = new JPanel(new BorderLayout());
+        JLabel label1 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
 
-            ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"));
-            Image img = icon.getImage();
+                ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"));
+                Image img = icon.getImage();
 
-            int panelW = getWidth();
-            int panelH = getHeight();
+                int panelW = getWidth();
+                int panelH = getHeight();
 
-            int margin = 15;
+                int margin = 15;
 
-            int availableW = panelW - margin * 2;
-            int availableH = panelH - margin * 2;
+                int availableW = panelW - margin * 2;
+                int availableH = panelH - margin * 2;
 
-            int imgW = img.getWidth(null);
-            int imgH = img.getHeight(null);
+                int imgW = img.getWidth(null);
+                int imgH = img.getHeight(null);
 
-            double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
+                double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
 
-            int newW = (int) (imgW * scale);
-            int newH = (int) (imgH * scale);
+                int newW = (int) (imgW * scale);
+                int newH = (int) (imgH * scale);
 
-            int x = (panelW - newW) / 2 + 10;
-            int y = (panelH - newH) / 2;
+                int x = (panelW - newW) / 2 + 10;
+                int y = (panelH - newH) / 2;
 
-            g.drawImage(img, x, y, newW, newH, this);
-        }
-    };
-    PanelPersonaggio1.add(label1, BorderLayout.CENTER);
-    PanelPersonaggio1.setBounds(25, 90, 150, 200);
-    PanelScegliPersonaggio.add(PanelPersonaggio1);
-    
+                g.drawImage(img, x, y, newW, newH, this);
+            }
+        };
+        PanelPersonaggio1.add(label1, BorderLayout.CENTER);
+        PanelPersonaggio1.setBounds(25, 90, 150, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio1);
+
         PanelPersonaggio2 = new JPanel(new BorderLayout());
-    JLabel label2 = new JLabel() {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
+        JLabel label2 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
 
-            ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"));
-            Image img = icon.getImage();
+                ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"));
+                Image img = icon.getImage();
 
-            int panelW = getWidth();
-            int panelH = getHeight();
+                int panelW = getWidth();
+                int panelH = getHeight();
 
-            int margin = 15;
+                int margin = 15;
 
-            int availableW = panelW - margin * 2;
-            int availableH = panelH - margin * 2;
+                int availableW = panelW - margin * 2;
+                int availableH = panelH - margin * 2;
 
-            int imgW = img.getWidth(null);
-            int imgH = img.getHeight(null);
+                int imgW = img.getWidth(null);
+                int imgH = img.getHeight(null);
 
-            double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
+                double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
 
-            int newW = (int) (imgW * scale);
-            int newH = (int) (imgH * scale);
+                int newW = (int) (imgW * scale);
+                int newH = (int) (imgH * scale);
 
-            int x = (panelW - newW) / 2;
-            int y = (panelH - newH) / 2;
+                int x = (panelW - newW) / 2;
+                int y = (panelH - newH) / 2;
 
-            g.drawImage(img, x, y, newW, newH, this);
-        }
-    };
-    PanelPersonaggio2.add(label2, BorderLayout.CENTER);
-    PanelPersonaggio2.setBounds(230, 90, 160, 200);
-    PanelScegliPersonaggio.add(PanelPersonaggio2);
-    
+                g.drawImage(img, x, y, newW, newH, this);
+            }
+        };
+        PanelPersonaggio2.add(label2, BorderLayout.CENTER);
+        PanelPersonaggio2.setBounds(230, 90, 160, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio2);
+
         PanelPersonaggio3 = new JPanel(new BorderLayout());
-    JLabel label3 = new JLabel() {
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
+        JLabel label3 = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
 
-            ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/TerzoPersonaggioGDR.png"));
-            Image img = icon.getImage();
+                ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/TerzoPersonaggioGDR.png"));
+                Image img = icon.getImage();
 
-            int panelW = getWidth();
-            int panelH = getHeight();
+                int panelW = getWidth();
+                int panelH = getHeight();
 
-            int margin = 15;
+                int margin = 15;
 
-            int availableW = panelW - margin * 2;
-            int availableH = panelH - margin * 2;
+                int availableW = panelW - margin * 2;
+                int availableH = panelH - margin * 2;
 
-            int imgW = img.getWidth(null);
-            int imgH = img.getHeight(null);
+                int imgW = img.getWidth(null);
+                int imgH = img.getHeight(null);
 
-            double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
+                double scale = Math.min((double) availableW / imgW, (double) availableH / imgH) * 1.08;
 
-            int newW = (int) (imgW * scale);
-            int newH = (int) (imgH * scale);
+                int newW = (int) (imgW * scale);
+                int newH = (int) (imgH * scale);
 
-            int x = (panelW - newW) / 2;
-            int y = (panelH - newH) / 2;
+                int x = (panelW - newW) / 2;
+                int y = (panelH - newH) / 2;
 
-            g.drawImage(img, x, y, newW, newH, this);
-        }
-    };
-    PanelPersonaggio3.add(label3, BorderLayout.CENTER);
-    PanelPersonaggio3.setBounds(463, 90, 140, 200);
-    PanelScegliPersonaggio.add(PanelPersonaggio3);
+                g.drawImage(img, x, y, newW, newH, this);
+            }
+        };
+        PanelPersonaggio3.add(label3, BorderLayout.CENTER);
+        PanelPersonaggio3.setBounds(463, 90, 140, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio3);
 
         // Bottone Gioca (inizialmente disabilitato)
         BottoneSceltaPersonaggio = new JButton("Gioca");
@@ -148,6 +148,15 @@ public class Grafica extends javax.swing.JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selezionato = (JPanel) e.getSource();
+                if(selezionato == PanelPersonaggio1){
+                    player = "Personaggio1";
+                }
+                else if(selezionato == PanelPersonaggio2){
+                    player = "Personaggio2";
+                }
+                else if (selezionato == PanelPersonaggio3){
+                    player = "Personaggio3";
+                }
                 evidenziaSelezione();
                 BottoneSceltaPersonaggio.setEnabled(true);
             }
@@ -161,7 +170,6 @@ public class Grafica extends javax.swing.JFrame {
     }
 
     private void evidenziaSelezione() {
-        // Reset bordi
         PanelPersonaggio1.setBorder(null);
         PanelPersonaggio2.setBorder(null);
         PanelPersonaggio3.setBorder(null);
@@ -220,6 +228,7 @@ public class Grafica extends javax.swing.JFrame {
 
         PanelPersonaggio3.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"))); // NOI18N
 
         javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
@@ -296,6 +305,7 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio1.setVisible(false);
         PanelPersonaggio2.setVisible(false);
         PanelPersonaggio3.setVisible(false);
+        
         
     }//GEN-LAST:event_BottoneSceltaPersonaggioActionPerformed
 
