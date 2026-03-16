@@ -21,16 +21,16 @@ public class Grafica extends javax.swing.JFrame {
      * Creates new form Grafica
      */
     public Grafica() {
+        initComponents();
+        BottoneSceltaPersonaggio.setEnabled(false);
+        BottoneSceltaPersonaggio.setText("Gioca");
         setTitle("Selezione Personaggio");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(640, 480);
         setLocationRelativeTo(null);
 
-        PanelScegliPersonaggio = new JPanel(null);
-        PanelScegliPersonaggio.setBackground(new Color(255, 255, 204));
 
         // PANEL 1: immagine ridimensionata
-        PanelPersonaggio1 = new JPanel(new BorderLayout());
         JLabel label1 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -65,7 +65,6 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio1.setBounds(25, 90, 150, 200);
         PanelScegliPersonaggio.add(PanelPersonaggio1);
 
-        PanelPersonaggio2 = new JPanel(new BorderLayout());
         JLabel label2 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -100,7 +99,6 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio2.setBounds(230, 90, 160, 200);
         PanelScegliPersonaggio.add(PanelPersonaggio2);
 
-        PanelPersonaggio3 = new JPanel(new BorderLayout());
         JLabel label3 = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -134,16 +132,7 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio3.add(label3, BorderLayout.CENTER);
         PanelPersonaggio3.setBounds(463, 90, 140, 200);
         PanelScegliPersonaggio.add(PanelPersonaggio3);
-
-        // Bottone Gioca (inizialmente disabilitato)
-        BottoneSceltaPersonaggio = new JButton("Gioca");
-        BottoneSceltaPersonaggio.setBounds(250, 340, 119, 23);
-        BottoneSceltaPersonaggio.setEnabled(false);
-        BottoneSceltaPersonaggio.addActionListener(e -> {
-
-        });
         
-        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
         MouseAdapter selezioneListener = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -258,7 +247,7 @@ public class Grafica extends javax.swing.JFrame {
             }
         });
         PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
-        BottoneSceltaPersonaggio.setBounds(250, 370, 119, 23);
+        BottoneSceltaPersonaggio.setBounds(250, 370, 119, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
 
@@ -301,11 +290,6 @@ public class Grafica extends javax.swing.JFrame {
 
     private void BottoneSceltaPersonaggioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneSceltaPersonaggioActionPerformed
         PanelScegliPersonaggio.setVisible(false);
-        BottoneSceltaPersonaggio.setVisible(false);
-        PanelPersonaggio1.setVisible(false);
-        PanelPersonaggio2.setVisible(false);
-        PanelPersonaggio3.setVisible(false);
-        
         
     }//GEN-LAST:event_BottoneSceltaPersonaggioActionPerformed
 
