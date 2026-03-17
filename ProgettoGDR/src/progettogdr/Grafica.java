@@ -13,7 +13,6 @@ import java.awt.event.*;
  * @author arcaleni.daniele2
  */
 public class Grafica extends javax.swing.JFrame {
-
     private JPanel selezionato = null;
     private String player = "";
 
@@ -28,6 +27,8 @@ public class Grafica extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(640, 480);
         setLocationRelativeTo(null);
+        /*PanelScegliPersonaggio.setVisible(false);*/
+        PanelInizioPartita.setVisible(false);
 
         PanelPersonaggio1.setLayout(new BorderLayout());
         JLabel label1 = creaLabel("/progettogdr/PersonaggioGDR.png", 90, 120);
@@ -36,7 +37,7 @@ public class Grafica extends javax.swing.JFrame {
         PanelScegliPersonaggio.add(PanelPersonaggio1);
 
         PanelPersonaggio2.setLayout(new BorderLayout());
-        JLabel label2 = creaLabel("/progettogdr/secondoPersonaggio.png", 90, 120);
+        JLabel label2 = creaLabel("/progettogdr/secondoPersonaggioGDR.png", 90, 120);
         PanelPersonaggio2.add(label2, BorderLayout.CENTER);
         PanelPersonaggio2.setBounds(230, 90, 160, 200);
         PanelScegliPersonaggio.add(PanelPersonaggio2);
@@ -53,13 +54,13 @@ public class Grafica extends javax.swing.JFrame {
                 selezionato = (JPanel) e.getSource();
 
                 if (selezionato == PanelPersonaggio1){
-                    player = "Personaggio1";
+                    player = "/progettogdr/PersonaggioGDR.png";
                 }
                 else if (selezionato == PanelPersonaggio2){
-                    player = "Personaggio2";
+                    player = "/progettogdr/secondoPersonaggioGDR.png";
                 }
                 else if (selezionato == PanelPersonaggio3){
-                    player = "Personaggio3";
+                    player = "/progettogdr/TerzoPersonaggioGDR.png";
                 }
 
                 evidenziaSelezione();
@@ -85,7 +86,6 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio2.setBorder(null);
         PanelPersonaggio3.setBorder(null);
 
-        // Evidenzia quello selezionato
         if (selezionato != null) {
             selezionato.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         }
@@ -102,12 +102,14 @@ public class Grafica extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        PanelInizioPartita = new javax.swing.JPanel();
+        txtOggettoPerso = new javax.swing.JLabel();
+        labelPersonaggioScelto = new javax.swing.JLabel();
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio3 = new javax.swing.JPanel();
         BottoneSceltaPersonaggio = new javax.swing.JButton();
         PanelPersonaggio1 = new javax.swing.JPanel();
-        txtOggettoPerso = new javax.swing.JLabel();
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"))); // NOI18N
@@ -117,6 +119,31 @@ public class Grafica extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtOggettoPerso.setText("perdiOggetto");
+
+        javax.swing.GroupLayout PanelInizioPartitaLayout = new javax.swing.GroupLayout(PanelInizioPartita);
+        PanelInizioPartita.setLayout(PanelInizioPartitaLayout);
+        PanelInizioPartitaLayout.setHorizontalGroup(
+            PanelInizioPartitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInizioPartitaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelPersonaggioScelto)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInizioPartitaLayout.createSequentialGroup()
+                .addContainerGap(294, Short.MAX_VALUE)
+                .addComponent(txtOggettoPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
+        );
+        PanelInizioPartitaLayout.setVerticalGroup(
+            PanelInizioPartitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelInizioPartitaLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(txtOggettoPerso)
+                .addGap(149, 149, 149)
+                .addComponent(labelPersonaggioScelto)
+                .addContainerGap(255, Short.MAX_VALUE))
+        );
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(null);
@@ -172,19 +199,19 @@ public class Grafica extends javax.swing.JFrame {
         PanelScegliPersonaggio.add(PanelPersonaggio1);
         PanelPersonaggio1.setBounds(20, 90, 160, 200);
 
-        txtOggettoPerso.setText("perdiOggetto");
-        PanelScegliPersonaggio.add(txtOggettoPerso);
-        txtOggettoPerso.setBounds(270, 50, 320, 16);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 646, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -192,6 +219,13 @@ public class Grafica extends javax.swing.JFrame {
 
     private void BottoneSceltaPersonaggioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneSceltaPersonaggioActionPerformed
         PanelScegliPersonaggio.setVisible(false);
+        PanelInizioPartita.setVisible(true);
+
+        ImageIcon icon = new ImageIcon(getClass().getResource(player));
+        Image img = icon.getImage().getScaledInstance(120, 150, Image.SCALE_SMOOTH);
+        labelPersonaggioScelto.setIcon(new ImageIcon(img));
+
+        labelPersonaggioScelto.setIcon(new ImageIcon(img));
     }//GEN-LAST:event_BottoneSceltaPersonaggioActionPerformed
 
     /**
@@ -213,6 +247,7 @@ public class Grafica extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BottoneSceltaPersonaggio;
+    private javax.swing.JPanel PanelInizioPartita;
     private javax.swing.JPanel PanelPersonaggio1;
     private javax.swing.JPanel PanelPersonaggio2;
     private javax.swing.JPanel PanelPersonaggio3;
@@ -220,6 +255,7 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel labelPersonaggioScelto;
     private javax.swing.JLabel txtOggettoPerso;
     // End of variables declaration//GEN-END:variables
 }
