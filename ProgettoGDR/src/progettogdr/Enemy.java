@@ -4,6 +4,7 @@
  */
 package progettogdr;
 import java.util.Random;
+import javax.swing.JLabel;
 /**
  *
  * @author arcaleni.daniele2
@@ -15,16 +16,19 @@ public class Enemy {
     private String oggettoPerso;
     private int danno;
     
-    public Enemy(String nome, int salute, boolean perdiOggetto, String oggettoPerso, int danno){
+    public Enemy(String nome, int salute, String oggettoPerso, int danno){
         this.nome = nome;
         this.salute = salute;
-        this.perdiOggetto = perdiOggetto;
         this.oggettoPerso = oggettoPerso;
         this.danno = danno;
     }
     
     public String getNome(){
         return nome;
+    }
+    
+    public String getNomeOggettoPerso(){
+        return oggettoPerso;
     }
     
     public int getSalute(){
@@ -35,12 +39,13 @@ public class Enemy {
         this.salute -= salute;
     }
     
-    public void oggettoPerso(Oggetto o){
+    public void oggettoPerso(JLabel l){
         Random rd = new Random();
-        int casuale = rd.nextInt(1, 3);
+        int casuale = rd.nextInt(2);
         
         if (casuale == 1){
             perdiOggetto = true;
+            l.setVisible(true);
         }
         else{
             perdiOggetto = false;

@@ -15,6 +15,7 @@ import java.awt.event.*;
 public class Grafica extends javax.swing.JFrame {
     private JPanel selezionato = null;
     private String player = "";
+    Enemy nemico = new Enemy("PrimoNemico", 100, "NomeOgettoPerso",20);
 
     /**
      * Creates new form Grafica
@@ -29,6 +30,7 @@ public class Grafica extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         /*PanelScegliPersonaggio.setVisible(false);*/
         PanelInizioPartita.setVisible(false);
+        txtOggettoPerso.setVisible(false);
 
         PanelPersonaggio1.setLayout(new BorderLayout());
         JLabel label1 = creaLabel("/progettogdr/PersonaggioGDR.png", 90, 120);
@@ -128,12 +130,14 @@ public class Grafica extends javax.swing.JFrame {
             PanelInizioPartitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInizioPartitaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelPersonaggioScelto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInizioPartitaLayout.createSequentialGroup()
-                .addContainerGap(294, Short.MAX_VALUE)
-                .addComponent(txtOggettoPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addGroup(PanelInizioPartitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelInizioPartitaLayout.createSequentialGroup()
+                        .addComponent(labelPersonaggioScelto)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInizioPartitaLayout.createSequentialGroup()
+                        .addGap(0, 288, Short.MAX_VALUE)
+                        .addComponent(txtOggettoPerso, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32))))
         );
         PanelInizioPartitaLayout.setVerticalGroup(
             PanelInizioPartitaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,6 +230,7 @@ public class Grafica extends javax.swing.JFrame {
         labelPersonaggioScelto.setIcon(new ImageIcon(img));
 
         labelPersonaggioScelto.setIcon(new ImageIcon(img));
+        nemico.oggettoPerso(txtOggettoPerso);
     }//GEN-LAST:event_BottoneSceltaPersonaggioActionPerformed
 
     /**
