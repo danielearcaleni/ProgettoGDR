@@ -67,12 +67,18 @@ public class Grafica extends javax.swing.JFrame {
 
                 if (selezionato == PanelPersonaggio1){
                     player = "/progettogdr/PersonaggioGDR.png";
+                    txtMangia.setText("1");
+                    txtBevi.setText("1");
                 }
                 else if (selezionato == PanelPersonaggio2){
                     player = "/progettogdr/secondoPersonaggioGDR.png";
+                    txtMangia.setText("2");
+                    txtBevi.setText("2");
                 }
                 else if (selezionato == PanelPersonaggio3){
                     player = "/progettogdr/TerzoPersonaggioGDR.png";
+                    txtMangia.setText("3");
+                    txtBevi.setText("3");
                 }
 
                 evidenziaSelezione();
@@ -126,6 +132,8 @@ public class Grafica extends javax.swing.JFrame {
         BottoneMangia = new javax.swing.JButton();
         Pausa = new javax.swing.JButton();
         BottoneAbilitaSpeciale = new javax.swing.JButton();
+        txtMangia = new javax.swing.JLabel();
+        txtBevi = new javax.swing.JLabel();
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio3 = new javax.swing.JPanel();
@@ -168,7 +176,7 @@ public class Grafica extends javax.swing.JFrame {
         jLabel3.setText("Pausa");
         PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 160, -1));
 
-        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 350, 360));
+        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 350, 360));
         PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 605, -1, -1));
 
         BottoneBevi.setText("Bevi");
@@ -186,7 +194,13 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.add(Pausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 24, 65, 41));
 
         BottoneAbilitaSpeciale.setText("Abilità Speciale");
-        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 209, -1, -1));
+        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+
+        txtMangia.setText("0");
+        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 186, 40, 20));
+
+        txtBevi.setText("0");
+        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 246, 40, 20));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(null);
@@ -252,7 +266,7 @@ public class Grafica extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -325,6 +339,8 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel labelPersonaggioScelto;
+    private javax.swing.JLabel txtBevi;
+    private javax.swing.JLabel txtMangia;
     private javax.swing.JLabel txtOggettoPerso;
     // End of variables declaration//GEN-END:variables
 }
