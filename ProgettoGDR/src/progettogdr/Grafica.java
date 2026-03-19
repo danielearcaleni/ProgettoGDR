@@ -15,41 +15,44 @@ import java.awt.event.*;
 public class Grafica extends javax.swing.JFrame {
     private JPanel selezionato = null;
     private String player = "";
-    Enemy nemico = new Enemy("PrimoNemico", 100, "NomeOgettoPerso",20);
+    Enemy nemico = new Enemy("PrimoNemico", 100, "NomeOgettoPerso", 20);
 
     /**
      * Creates new form Grafica
      */
     public Grafica() {
         initComponents();
-        
-        PanelScegliPersonaggio.setLayout(null);
 
-        JLabel sfondo = new JLabel(new ImageIcon(getClass().getResource("/progettogdr/SfondoSelezionePersonaggio.png")));
-        sfondo.setBounds(0, 0, 640, 480);
+        PanelScegliPersonaggio = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Image sfondo = new ImageIcon(getClass().getResource("/progettogdr/SelezionePersonaggio.png")).getImage();
+                g.drawImage(sfondo, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
 
-        PanelScegliPersonaggio.add(sfondo);
-        PanelScegliPersonaggio.setComponentZOrder(sfondo, PanelScegliPersonaggio.getComponentCount() - 1);
+        PanelScegliPersonaggio = new PanelConSfondo();
+        PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout()); // mantiene layout NetBeans
 
-        ImageIcon iconPausa = new ImageIcon(getClass().getResource("/progettogdr/SimboloMenuPausa.png"));
-        Image imgPausa = iconPausa.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
-        Pausa.setIcon(new ImageIcon(imgPausa));
-        Pausa.setBorderPainted(false);
-        Pausa.setContentAreaFilled(false);
-        Pausa.setFocusPainted(false);
         PanelPersonaggio1.setOpaque(false);
         PanelPersonaggio2.setOpaque(false);
         PanelPersonaggio3.setOpaque(false);
-        
-        PanelPausa.setVisible(false);
-        
+
+        PanelScegliPersonaggio.add(PanelPersonaggio1);
+        PanelScegliPersonaggio.add(PanelPersonaggio2);
+        PanelScegliPersonaggio.add(PanelPersonaggio3);
+
+        BottoneSceltaPersonaggio.setBounds(250, 370, 119, 30);
+        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
         BottoneSceltaPersonaggio.setEnabled(false);
         BottoneSceltaPersonaggio.setText("Gioca");
+
         setTitle("Selezione Personaggio");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(640, 480);
         setLocationRelativeTo(null);
-        /*PanelScegliPersonaggio.setVisible(false);*/
+
         PanelInizioPartita.setVisible(false);
         txtOggettoPerso.setVisible(false);
 
@@ -88,26 +91,34 @@ public class Grafica extends javax.swing.JFrame {
                     txtMangia.setText("2");
                     txtBevi.setText("2");
                     txtInventarioCorrente.setText("4");
-                    txtInventarioMassimo.setText("12");
+                    txtInventarioMassimo.setText("10");
                 }
                 else if (selezionato == PanelPersonaggio3){
                     player = "/progettogdr/TerzoPersonaggioGDR.png";
                     txtMangia.setText("0");
                     txtBevi.setText("0");
                     txtInventarioCorrente.setText("0");
-                    txtInventarioMassimo.setText("10");
+                    txtInventarioMassimo.setText("12");
                 }
 
                 evidenziaSelezione();
                 BottoneSceltaPersonaggio.setEnabled(true);
             }
         };
-
+        PanelScegliPersonaggio.repaint();
         PanelPersonaggio1.addMouseListener(selezioneListener);
         PanelPersonaggio2.addMouseListener(selezioneListener);
         PanelPersonaggio3.addMouseListener(selezioneListener);
+    }
+    
+    class PanelConSfondo extends JPanel {
+        private Image sfondo = new ImageIcon(getClass().getResource("/progettogdr/SelezionePersonaggio.png")).getImage();
 
-        add(PanelScegliPersonaggio);
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(sfondo, 0, 0, getWidth(), getHeight(), this);
+        }
     }
 
     private JLabel creaLabel(String path, int w, int h) {
@@ -138,12 +149,12 @@ public class Grafica extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         PanelInizioPartita = new javax.swing.JPanel();
-        txtOggettoPerso = new javax.swing.JLabel();
         PanelPausa = new javax.swing.JPanel();
         BottoneRiprendiPartita = new javax.swing.JButton();
         BottoneSalvaPartita = new javax.swing.JButton();
         BottoneCaricaPartita = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        txtOggettoPerso = new javax.swing.JLabel();
         labelPersonaggioScelto = new javax.swing.JLabel();
         BottoneBevi = new javax.swing.JButton();
         BottoneMangia = new javax.swing.JButton();
@@ -174,9 +185,6 @@ public class Grafica extends javax.swing.JFrame {
 
         PanelInizioPartita.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtOggettoPerso.setText("perdiOggetto");
-        PanelInizioPartita.add(txtOggettoPerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 250, -1));
-
         PanelPausa.setBackground(new java.awt.Color(0, 0, 0));
         PanelPausa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -199,7 +207,10 @@ public class Grafica extends javax.swing.JFrame {
         jLabel3.setText("Pausa");
         PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 160, -1));
 
-        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 190, 220));
+        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 190, 220));
+
+        txtOggettoPerso.setText("perdiOggetto");
+        PanelInizioPartita.add(txtOggettoPerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 250, -1));
         PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 605, -1, -1));
 
         BottoneBevi.setText("Bevi");
@@ -258,7 +269,7 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
-        PanelScegliPersonaggio.setLayout(null);
+        PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout PanelPersonaggio2Layout = new javax.swing.GroupLayout(PanelPersonaggio2);
         PanelPersonaggio2.setLayout(PanelPersonaggio2Layout);
@@ -271,8 +282,7 @@ public class Grafica extends javax.swing.JFrame {
             .addGap(0, 200, Short.MAX_VALUE)
         );
 
-        PanelScegliPersonaggio.add(PanelPersonaggio2);
-        PanelPersonaggio2.setBounds(230, 90, 160, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
         PanelPersonaggio3.setLayout(PanelPersonaggio3Layout);
@@ -285,8 +295,7 @@ public class Grafica extends javax.swing.JFrame {
             .addGap(0, 200, Short.MAX_VALUE)
         );
 
-        PanelScegliPersonaggio.add(PanelPersonaggio3);
-        PanelPersonaggio3.setBounds(463, 90, 140, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 90, -1, -1));
 
         BottoneSceltaPersonaggio.setText("Scegli");
         BottoneSceltaPersonaggio.addActionListener(new java.awt.event.ActionListener() {
@@ -294,8 +303,7 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneSceltaPersonaggioActionPerformed(evt);
             }
         });
-        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio);
-        BottoneSceltaPersonaggio.setBounds(250, 370, 119, 30);
+        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 119, 30));
 
         javax.swing.GroupLayout PanelPersonaggio1Layout = new javax.swing.GroupLayout(PanelPersonaggio1);
         PanelPersonaggio1.setLayout(PanelPersonaggio1Layout);
@@ -308,34 +316,37 @@ public class Grafica extends javax.swing.JFrame {
             .addGap(0, 200, Short.MAX_VALUE)
         );
 
-        PanelScegliPersonaggio.add(PanelPersonaggio1);
-        PanelPersonaggio1.setBounds(20, 90, 160, 200);
+        PanelScegliPersonaggio.add(PanelPersonaggio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(PanelInizioPartita, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(PanelInizioPartita, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 21, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BottoneSceltaPersonaggioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneSceltaPersonaggioActionPerformed
-        PanelScegliPersonaggio.setVisible(false);
         PanelInizioPartita.setVisible(true);
+        PanelScegliPersonaggio.setVisible(false);
 
         ImageIcon icon = new ImageIcon(getClass().getResource(player));
         Image img = icon.getImage().getScaledInstance(120, 150, Image.SCALE_SMOOTH);
