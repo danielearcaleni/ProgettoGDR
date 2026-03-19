@@ -23,12 +23,23 @@ public class Grafica extends javax.swing.JFrame {
     public Grafica() {
         initComponents();
         
+        PanelScegliPersonaggio.setLayout(null);
+
+        JLabel sfondo = new JLabel(new ImageIcon(getClass().getResource("/progettogdr/SfondoSelezionePersonaggio.png")));
+        sfondo.setBounds(0, 0, 640, 480);
+
+        PanelScegliPersonaggio.add(sfondo);
+        PanelScegliPersonaggio.setComponentZOrder(sfondo, PanelScegliPersonaggio.getComponentCount() - 1);
+
         ImageIcon iconPausa = new ImageIcon(getClass().getResource("/progettogdr/SimboloMenuPausa.png"));
         Image imgPausa = iconPausa.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         Pausa.setIcon(new ImageIcon(imgPausa));
         Pausa.setBorderPainted(false);
         Pausa.setContentAreaFilled(false);
         Pausa.setFocusPainted(false);
+        PanelPersonaggio1.setOpaque(false);
+        PanelPersonaggio2.setOpaque(false);
+        PanelPersonaggio3.setOpaque(false);
         
         PanelPausa.setVisible(false);
         
@@ -67,18 +78,24 @@ public class Grafica extends javax.swing.JFrame {
 
                 if (selezionato == PanelPersonaggio1){
                     player = "/progettogdr/PersonaggioGDR.png";
-                    txtMangia.setText("1");
-                    txtBevi.setText("1");
+                    txtMangia.setText("0");
+                    txtBevi.setText("0");
+                    txtInventarioCorrente.setText("0");
+                    txtInventarioMassimo.setText("10");
                 }
                 else if (selezionato == PanelPersonaggio2){
                     player = "/progettogdr/secondoPersonaggioGDR.png";
                     txtMangia.setText("2");
                     txtBevi.setText("2");
+                    txtInventarioCorrente.setText("4");
+                    txtInventarioMassimo.setText("12");
                 }
                 else if (selezionato == PanelPersonaggio3){
                     player = "/progettogdr/TerzoPersonaggioGDR.png";
-                    txtMangia.setText("3");
-                    txtBevi.setText("3");
+                    txtMangia.setText("0");
+                    txtBevi.setText("0");
+                    txtInventarioCorrente.setText("0");
+                    txtInventarioMassimo.setText("10");
                 }
 
                 evidenziaSelezione();
@@ -134,6 +151,12 @@ public class Grafica extends javax.swing.JFrame {
         BottoneAbilitaSpeciale = new javax.swing.JButton();
         txtMangia = new javax.swing.JLabel();
         txtBevi = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtInventarioCorrente = new javax.swing.JLabel();
+        txtInventarioMassimo = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio3 = new javax.swing.JPanel();
@@ -152,7 +175,7 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtOggettoPerso.setText("perdiOggetto");
-        PanelInizioPartita.add(txtOggettoPerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 320, -1));
+        PanelInizioPartita.add(txtOggettoPerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 250, -1));
 
         PanelPausa.setBackground(new java.awt.Color(0, 0, 0));
         PanelPausa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -163,27 +186,37 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneRiprendiPartitaActionPerformed(evt);
             }
         });
-        PanelPausa.add(BottoneRiprendiPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, -1, -1));
+        PanelPausa.add(BottoneRiprendiPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
 
         BottoneSalvaPartita.setText("SalvaPartita");
-        PanelPausa.add(BottoneSalvaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 100, -1));
+        PanelPausa.add(BottoneSalvaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 100, -1));
 
         BottoneCaricaPartita.setText("CaricaPartita");
-        PanelPausa.add(BottoneCaricaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 100, -1));
+        PanelPausa.add(BottoneCaricaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 100, -1));
 
         jLabel3.setFont(new java.awt.Font("Rockwell Extra Bold", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Pausa");
-        PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 160, -1));
+        PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 160, -1));
 
-        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 370, 350, 360));
+        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, 190, 220));
         PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(66, 605, -1, -1));
 
         BottoneBevi.setText("Bevi");
-        PanelInizioPartita.add(BottoneBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 244, -1, -1));
+        BottoneBevi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneBeviActionPerformed(evt);
+            }
+        });
+        PanelInizioPartita.add(BottoneBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
         BottoneMangia.setText("Mangia");
-        PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 182, -1, -1));
+        BottoneMangia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneMangiaActionPerformed(evt);
+            }
+        });
+        PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         Pausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/SimboloMenuPausa.png"))); // NOI18N
         Pausa.addActionListener(new java.awt.event.ActionListener() {
@@ -194,13 +227,35 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.add(Pausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 24, 65, 41));
 
         BottoneAbilitaSpeciale.setText("Abilità Speciale");
-        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 220, -1, -1));
+        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
         txtMangia.setText("0");
-        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 186, 40, 20));
+        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 40, 20));
 
         txtBevi.setText("0");
-        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 246, 40, 20));
+        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 40, 20));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel5.setText("Inventario Massimo: ");
+        PanelInizioPartita.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel6.setText("Capienza inventario: ");
+        PanelInizioPartita.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+
+        txtInventarioCorrente.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        txtInventarioCorrente.setText("0");
+        PanelInizioPartita.add(txtInventarioCorrente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 80, -1));
+
+        txtInventarioMassimo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        txtInventarioMassimo.setText("10");
+        PanelInizioPartita.add(txtInventarioMassimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 90, -1));
+
+        jLabel7.setText("jLabel7");
+        PanelInizioPartita.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
+
+        jLabel8.setText("jLabel8");
+        PanelInizioPartita.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(null);
@@ -260,15 +315,19 @@ public class Grafica extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 32, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(PanelInizioPartita, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 21, Short.MAX_VALUE)))
         );
 
         pack();
@@ -301,6 +360,18 @@ public class Grafica extends javax.swing.JFrame {
         BottoneAbilitaSpeciale.setVisible(true);
         txtOggettoPerso.setVisible(true);
     }//GEN-LAST:event_BottoneRiprendiPartitaActionPerformed
+
+    private void BottoneMangiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneMangiaActionPerformed
+        if(Integer.parseInt(txtMangia.getText()) > 0){
+        txtMangia.setText("" + (Integer.parseInt(txtMangia.getText()) - 1));
+        }
+    }//GEN-LAST:event_BottoneMangiaActionPerformed
+
+    private void BottoneBeviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneBeviActionPerformed
+        if(Integer.parseInt(txtBevi.getText()) > 0){
+            txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) - 1));
+        }
+    }//GEN-LAST:event_BottoneBeviActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,8 +409,14 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel labelPersonaggioScelto;
     private javax.swing.JLabel txtBevi;
+    private javax.swing.JLabel txtInventarioCorrente;
+    private javax.swing.JLabel txtInventarioMassimo;
     private javax.swing.JLabel txtMangia;
     private javax.swing.JLabel txtOggettoPerso;
     // End of variables declaration//GEN-END:variables
