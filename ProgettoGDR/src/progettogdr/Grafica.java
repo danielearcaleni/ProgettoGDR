@@ -16,13 +16,14 @@ public class Grafica extends javax.swing.JFrame {
     private JPanel selezionato = null;
     private String player = "";
     Enemy nemico = new Enemy("PrimoNemico", 100, "NomeOgettoPerso", 20);
-
+    private Gestore g1;
     /**
      * Creates new form Grafica
      */
     public Grafica() {
         initComponents();
         
+        g1 = new Gestore(0, txtArea);
         PanelScegliPersonaggio.setLayout(new BorderLayout());
         PanelScegliPersonaggio.add(new PanelConSfondo());
 
@@ -45,6 +46,7 @@ public class Grafica extends javax.swing.JFrame {
         Pausa.setContentAreaFilled(false);
         Pausa.setFocusPainted(false);
         Pausa.setOpaque(false);
+        txtArea.setEditable(false);
         ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/SimboloMenuPausa.png"));
         Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         Pausa.setIcon(new ImageIcon(img));
@@ -81,7 +83,7 @@ public class Grafica extends javax.swing.JFrame {
                 }
                 else if (selezionato == PanelPersonaggio2){
                     player = "/progettogdr/secondoPersonaggioGDR.png";
-                    txtMangia.setText("2");
+                    txtMangia.setText("20");
                     txtBevi.setText("2");
                     txtInventarioCorrente.setText("4");
                     txtInventarioMassimo.setText("10");
@@ -163,11 +165,21 @@ public class Grafica extends javax.swing.JFrame {
         txtInventarioMassimo = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        VitaPersonaggio = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        BottoneAvanza = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio3 = new javax.swing.JPanel();
         BottoneSceltaPersonaggio = new javax.swing.JButton();
         PanelPersonaggio1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"))); // NOI18N
@@ -233,7 +245,7 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.add(Pausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 24, 65, 41));
 
         BottoneAbilitaSpeciale.setText("Abilità Speciale");
-        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
+        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
 
         txtMangia.setText("0");
         PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 40, 20));
@@ -243,25 +255,58 @@ public class Grafica extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel5.setText("Inventario Massimo: ");
-        PanelInizioPartita.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+        PanelInizioPartita.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel6.setText("Capienza inventario: ");
-        PanelInizioPartita.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+        PanelInizioPartita.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         txtInventarioCorrente.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         txtInventarioCorrente.setText("0");
-        PanelInizioPartita.add(txtInventarioCorrente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 80, -1));
+        PanelInizioPartita.add(txtInventarioCorrente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 80, -1));
 
         txtInventarioMassimo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         txtInventarioMassimo.setText("10");
-        PanelInizioPartita.add(txtInventarioMassimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 90, -1));
+        PanelInizioPartita.add(txtInventarioMassimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 90, -1));
 
-        jLabel7.setText("jLabel7");
-        PanelInizioPartita.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
+        jLabel7.setFont(new java.awt.Font("Sans Serif Collection", 3, 14)); // NOI18N
+        jLabel7.setText("Vita:");
+        PanelInizioPartita.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 40, -1));
 
-        jLabel8.setText("jLabel8");
-        PanelInizioPartita.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
+        jLabel8.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        jLabel8.setText("Fame:");
+        PanelInizioPartita.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 40, -1));
+
+        VitaPersonaggio.setFont(new java.awt.Font("Sans Serif Collection", 3, 14)); // NOI18N
+        VitaPersonaggio.setForeground(new java.awt.Color(51, 255, 51));
+        VitaPersonaggio.setText("100");
+        PanelInizioPartita.add(VitaPersonaggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 80, -1));
+
+        jLabel12.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        jLabel12.setText("Sete:");
+        PanelInizioPartita.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 40, -1));
+
+        jLabel13.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        jLabel13.setText("100");
+        PanelInizioPartita.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 60, -1));
+
+        jLabel14.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        jLabel14.setText("100");
+        PanelInizioPartita.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 60, -1));
+
+        BottoneAvanza.setText("Avanti");
+        BottoneAvanza.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneAvanzaActionPerformed(evt);
+            }
+        });
+        PanelInizioPartita.add(BottoneAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, 50));
+
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        PanelInizioPartita.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 170));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -312,6 +357,24 @@ public class Grafica extends javax.swing.JFrame {
         );
 
         PanelScegliPersonaggio.add(PanelPersonaggio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        jLabel9.setBackground(new java.awt.Color(51, 255, 51));
+        jLabel9.setFont(new java.awt.Font("SansSerif", 3, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel9.setText("+20 Vita Max");
+        PanelScegliPersonaggio.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+
+        jLabel10.setBackground(new java.awt.Color(51, 255, 51));
+        jLabel10.setFont(new java.awt.Font("SansSerif", 3, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel10.setText("+2 Cibo, +2 Acqua");
+        PanelScegliPersonaggio.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
+
+        jLabel11.setBackground(new java.awt.Color(51, 255, 51));
+        jLabel11.setFont(new java.awt.Font("SansSerif", 3, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 255, 51));
+        jLabel11.setText("+2 Spazio Inventario");
+        PanelScegliPersonaggio.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -366,6 +429,20 @@ public class Grafica extends javax.swing.JFrame {
         if(Integer.parseInt(txtMangia.getText()) > 0){
         txtMangia.setText("" + (Integer.parseInt(txtMangia.getText()) - 1));
         }
+        VitaPersonaggio.setText("" + (Integer.parseInt(VitaPersonaggio.getText()) - 10));
+        
+        if (Integer.parseInt(VitaPersonaggio.getText()) < 70 && Integer.parseInt(VitaPersonaggio.getText()) >= 50) {
+            VitaPersonaggio.setForeground(Color.yellow);
+        }
+        else if (Integer.parseInt(VitaPersonaggio.getText()) < 50 && Integer.parseInt(VitaPersonaggio.getText()) >= 30) {
+            VitaPersonaggio.setForeground(Color.orange);
+        }
+        else if (Integer.parseInt(VitaPersonaggio.getText()) < 30) {
+            VitaPersonaggio.setForeground(Color.red);
+        }
+        else {
+            VitaPersonaggio.setForeground(Color.green);
+        }
     }//GEN-LAST:event_BottoneMangiaActionPerformed
 
     private void BottoneBeviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneBeviActionPerformed
@@ -373,6 +450,10 @@ public class Grafica extends javax.swing.JFrame {
             txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) - 1));
         }
     }//GEN-LAST:event_BottoneBeviActionPerformed
+
+    private void BottoneAvanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneAvanzaActionPerformed
+        g1.prossimoGiorno();
+    }//GEN-LAST:event_BottoneAvanzaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,6 +474,7 @@ public class Grafica extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BottoneAbilitaSpeciale;
+    private javax.swing.JButton BottoneAvanza;
     private javax.swing.JButton BottoneBevi;
     private javax.swing.JButton BottoneCaricaPartita;
     private javax.swing.JButton BottoneMangia;
@@ -406,7 +488,13 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPersonaggio3;
     private javax.swing.JPanel PanelScegliPersonaggio;
     private javax.swing.JButton Pausa;
+    private javax.swing.JLabel VitaPersonaggio;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -414,7 +502,10 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelPersonaggioScelto;
+    private javax.swing.JTextArea txtArea;
     private javax.swing.JLabel txtBevi;
     private javax.swing.JLabel txtInventarioCorrente;
     private javax.swing.JLabel txtInventarioMassimo;

@@ -3,11 +3,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package progettogdr;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 /**
  *
  * @author arcaleni.daniele2
  */
 public class FileManager {
+
+    private String filePath = "PrendiFrase.txt";
+    ArrayList<String> frasi = new ArrayList<>();
     
+    public ArrayList<String> letturaFile(){
+    try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
+        String line;
+        
+        while((line = reader.readLine()) != null){
+            frasi.add(line);
+        }
+    }
+    catch(IOException e){
+            System.out.println("Errore nella lettura del file");
+        }
+        return frasi;
+    }
 }
