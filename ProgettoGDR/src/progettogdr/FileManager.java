@@ -15,18 +15,34 @@ public class FileManager {
 
     private String filePath = "PrendiFrase.txt";
     ArrayList<String> frasi = new ArrayList<>();
+    ArrayList<String> tipoNemico = new ArrayList<>();
+    ArrayList<String> tipoOggetto = new ArrayList<>();
+    private boolean nemico;
     
     public ArrayList<String> letturaFile(){
     try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
         String line;
-        
+        String[] dati;
         while((line = reader.readLine()) != null){
-            frasi.add(line);
+                dati = line.split(";");
+                frasi.add(dati[0]);
+            }
+        
+            if (dati[1].equals("Nemico")) {
+                nemico = true;
+                tipoNemico.add(dati[0]);
+            } else {
+                nemico = false;
+                tipoOggetto.add(dati[0]);
+            }
         }
-    }
     catch(IOException e){
             System.out.println("Errore nella lettura del file");
         }
         return frasi;
+    }
+    
+    public boolean isEnemy(){
+        return nemico;
     }
 }
