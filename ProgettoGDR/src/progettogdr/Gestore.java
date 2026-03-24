@@ -15,12 +15,16 @@ public class Gestore {
     private JTextArea txtArea;
     private JLabel lblNemico;
     private JLabel lblOggetto;
+    private FileManager fm;
     
     public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto){
         this.punteggio = punteggio;
         this.txtArea = txtArea;
         this.lblNemico = lblNemico;
         this.lblOggetto = lblOggetto;
+        
+        fm = new FileManager();
+        fm.letturaFile();
     }
     
     public int getPunteggio(){
@@ -31,20 +35,22 @@ public class Gestore {
         this.punteggio += punteggio;
     }
     
+    
     public void prossimoGiorno(){
         Random rd  = new Random();
-        FileManager fm = new FileManager();
         
-        ArrayList<String> frasi = fm.letturaFile();
+        ArrayList<String> frasi = fm.getFrasi();
         int numero = rd.nextInt(frasi.size());
         String frase = frasi.get(numero);
         txtArea.setText(frase);
-        if(fm.isEnemy() == true){
-            System.out.println("è un nemico");
+        
+        if(fm.ritornaTipoNemico().contains(frase)){
             lblNemico.setVisible(true);
+            lblOggetto.setVisible(false);
         }
         else{
-            //rendi oggetto visibile
+            lblOggetto.setVisible(true);
+            lblNemico.setVisible(false);
         }
     }
 }

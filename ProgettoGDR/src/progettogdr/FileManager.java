@@ -18,31 +18,41 @@ public class FileManager {
     ArrayList<String> tipoNemico = new ArrayList<>();
     ArrayList<String> tipoOggetto = new ArrayList<>();
     private boolean nemico;
-    
+    String[] dati = null;
     public ArrayList<String> letturaFile(){
     try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
         String line;
-        String[] dati;
+        
         while((line = reader.readLine()) != null){
                 dati = line.split(";");
                 frasi.add(dati[0]);
-            }
-        
-            if (dati[1].equals("Nemico")) {
-                nemico = true;
-                tipoNemico.add(dati[0]);
-            } else {
-                nemico = false;
-                tipoOggetto.add(dati[0]);
+                
+                if(dati[1].equals("Nemico")){
+                    tipoNemico.add(dati[0]);
+                }
+                else{
+                    tipoOggetto.add(dati[0]);
+                }
             }
         }
     catch(IOException e){
             System.out.println("Errore nella lettura del file");
         }
         return frasi;
-    }
+    } 
     
     public boolean isEnemy(){
         return nemico;
+    }
+    
+    public ArrayList<String> ritornaTipoNemico(){
+        return tipoNemico;
+    }
+    public ArrayList<String> ritornaTipoOggetto(){
+        return tipoOggetto;
+    }
+    
+    public ArrayList<String> getFrasi(){
+        return frasi;
     }
 }

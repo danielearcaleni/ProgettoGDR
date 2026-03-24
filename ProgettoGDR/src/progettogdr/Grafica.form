@@ -412,11 +412,13 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblOggetto">
           <Properties>
-            <Property name="text" type="java.lang.String" value="MettiImmagineOggetto"/>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/progettogdr/OggettoCibo.png"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="330" y="260" width="130" height="20"/>
+              <AbsoluteConstraints x="280" y="40" width="130" height="150"/>
             </Constraint>
           </Constraints>
         </Component>

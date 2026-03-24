@@ -309,8 +309,8 @@ public class Grafica extends javax.swing.JFrame {
         lblNemico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/NemicoGDR.png"))); // NOI18N
         PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, 140));
 
-        lblOggetto.setText("MettiImmagineOggetto");
-        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 130, 20));
+        lblOggetto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/OggettoCibo.png"))); // NOI18N
+        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 130, 150));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
