@@ -22,13 +22,13 @@ public class Grafica extends javax.swing.JFrame {
      */
     public Grafica() {
         initComponents();
-        
+
+        getContentPane().setLayout(null);
         g1 = new Gestore(0, txtArea, lblNemico, lblOggetto);
         PanelScegliPersonaggio.setLayout(new BorderLayout());
         PanelScegliPersonaggio.add(new PanelConSfondo());
 
         PanelScegliPersonaggio.setOpaque(false);
-
         PanelPersonaggio1.setOpaque(false);
         PanelPersonaggio2.setOpaque(false);
         PanelPersonaggio3.setOpaque(false);
@@ -40,6 +40,7 @@ public class Grafica extends javax.swing.JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(640, 480);
         setLocationRelativeTo(null);
+        
         PanelPausa.setVisible(false);
         Pausa.setBorderPainted(false);
         Pausa.setContentAreaFilled(false);
@@ -48,44 +49,42 @@ public class Grafica extends javax.swing.JFrame {
         txtArea.setEditable(false);
         lblOggetto.setVisible(false);
         lblNemico.setVisible(false);
+        
         ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/SimboloMenuPausa.png"));
         Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         Pausa.setIcon(new ImageIcon(img));
         PanelInizioPartita.setVisible(false);
-        
         txtOggettoPerso.setVisible(false);
 
         PanelPersonaggio1.setLayout(new BorderLayout());
         JLabel label1 = creaLabel("/progettogdr/PersonaggioGDR.png", 90, 120);
         PanelPersonaggio1.add(label1, BorderLayout.CENTER);
         PanelPersonaggio1.setBounds(25, 90, 150, 200);
-
+        
         PanelPersonaggio2.setLayout(new BorderLayout());
         JLabel label2 = creaLabel("/progettogdr/secondoPersonaggioGDR.png", 90, 120);
         PanelPersonaggio2.add(label2, BorderLayout.CENTER);
         PanelPersonaggio2.setBounds(230, 90, 160, 200);
-
+        
         PanelPersonaggio3.setLayout(new BorderLayout());
         JLabel label3 = creaLabel("/progettogdr/TerzoPersonaggioGDR.png", 90, 120);
         PanelPersonaggio3.add(label3, BorderLayout.CENTER);
         PanelPersonaggio3.setBounds(463, 90, 140, 200);
-
+        
         MouseAdapter selezioneListener = new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e){
+            public void mouseClicked(MouseEvent e) {
                 selezionato = (JPanel) e.getSource();
 
-                if (selezionato == PanelPersonaggio1){
+                if (selezionato == PanelPersonaggio1) {
                     player = "/progettogdr/PersonaggioGDR.png";
                     VitaPersonaggio.setText("120");
-                }
-                else if (selezionato == PanelPersonaggio2){
+                } else if (selezionato == PanelPersonaggio2) {
                     player = "/progettogdr/secondoPersonaggioGDR.png";
                     txtMangia.setText("2");
                     txtBevi.setText("2");
                     txtInventarioCorrente.setText("4");
-                }
-                else if (selezionato == PanelPersonaggio3){
+                } else if (selezionato == PanelPersonaggio3) {
                     player = "/progettogdr/TerzoPersonaggioGDR.png";
                     txtMangia.setText("0");
                     txtBevi.setText("0");
@@ -97,20 +96,34 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneSceltaPersonaggio.setEnabled(true);
             }
         };
+        
         PanelPersonaggio1.addMouseListener(selezioneListener);
         PanelPersonaggio2.addMouseListener(selezioneListener);
         PanelPersonaggio3.addMouseListener(selezioneListener);
     }
-    
+                
+    private void ridimensionaFont(Container contenitore, int nuovaGrandezza) {
+        for (Component c : contenitore.getComponents()) {
+            if (c.getFont() != null) {
+                c.setFont(new Font(c.getFont().getName(), c.getFont().getStyle(), nuovaGrandezza));
+            }
+            if (c instanceof Container) {
+                ridimensionaFont((Container) c, nuovaGrandezza);
+            }
+        }
+    }
+
     class PanelConSfondo extends JPanel {
 
         private Image sfondo = new ImageIcon(getClass().getResource("/progettogdr/SelezionePersonaggio.png")).getImage();
 
         @Override
+
         public void paint(Graphics g) {
             super.paint(g);
             Image sfondo = new ImageIcon(getClass().getResource("/progettogdr/SelezionePersonaggio.png")).getImage();
             g.drawImage(sfondo, 0, 0, getWidth(), getHeight(), this);
+
         }
     }
 
@@ -121,9 +134,10 @@ public class Grafica extends javax.swing.JFrame {
     }
 
     private void evidenziaSelezione() {
-        PanelPersonaggio1.setBorder(null);
-        PanelPersonaggio2.setBorder(null);
-        PanelPersonaggio3.setBorder(null);
+
+        PanelPersonaggio1.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        PanelPersonaggio2.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
+        PanelPersonaggio3.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 
         if (selezionato != null) {
             selezionato.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
