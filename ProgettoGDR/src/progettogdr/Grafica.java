@@ -54,7 +54,6 @@ public class Grafica extends javax.swing.JFrame {
         Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         Pausa.setIcon(new ImageIcon(img));
         PanelInizioPartita.setVisible(false);
-        txtOggettoPerso.setVisible(false);
 
         PanelPersonaggio1.setLayout(new BorderLayout());
         JLabel label1 = creaLabel("/progettogdr/PersonaggioGDR.png", 90, 120);
@@ -161,7 +160,6 @@ public class Grafica extends javax.swing.JFrame {
         BottoneSalvaPartita = new javax.swing.JButton();
         BottoneCaricaPartita = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtOggettoPerso = new javax.swing.JLabel();
         labelPersonaggioScelto = new javax.swing.JLabel();
         BottoneBevi = new javax.swing.JButton();
         BottoneMangia = new javax.swing.JButton();
@@ -184,6 +182,7 @@ public class Grafica extends javax.swing.JFrame {
         txtArea = new javax.swing.JTextArea();
         lblNemico = new javax.swing.JLabel();
         lblOggetto = new javax.swing.JLabel();
+        BottonePrendiOggetto = new javax.swing.JButton();
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio3 = new javax.swing.JPanel();
@@ -227,9 +226,6 @@ public class Grafica extends javax.swing.JFrame {
         PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 160, -1));
 
         PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 180, 130));
-
-        txtOggettoPerso.setText("perdiOggetto");
-        PanelInizioPartita.add(txtOggettoPerso, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 250, -1));
         PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 150, -1, -1));
 
         BottoneBevi.setText("Bevi");
@@ -321,10 +317,13 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 170));
 
         lblNemico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/NemicoGDR.png"))); // NOI18N
-        PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, 140));
+        PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, -1, 140));
 
         lblOggetto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/OggettoCibo.png"))); // NOI18N
-        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 130, 150));
+        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 130, 150));
+
+        BottonePrendiOggetto.setText("Prendi");
+        PanelInizioPartita.add(BottonePrendiOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, 30));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -421,8 +420,6 @@ public class Grafica extends javax.swing.JFrame {
         Image img = icon.getImage().getScaledInstance(100, 130, Image.SCALE_SMOOTH);
         labelPersonaggioScelto.setIcon(new ImageIcon(img));
 
-        nemico.oggettoPerso(txtOggettoPerso);
-
         PanelScegliPersonaggio.setVisible(false);
         PanelInizioPartita.setVisible(true);
     }//GEN-LAST:event_BottoneSceltaPersonaggioActionPerformed
@@ -432,7 +429,6 @@ public class Grafica extends javax.swing.JFrame {
         BottoneBevi.setVisible(false);
         BottoneMangia.setVisible(false);
         BottoneAbilitaSpeciale.setVisible(false);
-        txtOggettoPerso.setVisible(false);
     }//GEN-LAST:event_PausaActionPerformed
 
     private void BottoneRiprendiPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneRiprendiPartitaActionPerformed
@@ -440,7 +436,6 @@ public class Grafica extends javax.swing.JFrame {
         BottoneBevi.setVisible(true);
         BottoneMangia.setVisible(true);
         BottoneAbilitaSpeciale.setVisible(true);
-        txtOggettoPerso.setVisible(true);
     }//GEN-LAST:event_BottoneRiprendiPartitaActionPerformed
 
     private void BottoneMangiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneMangiaActionPerformed
@@ -496,6 +491,7 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JButton BottoneBevi;
     private javax.swing.JButton BottoneCaricaPartita;
     private javax.swing.JButton BottoneMangia;
+    private javax.swing.JButton BottonePrendiOggetto;
     private javax.swing.JButton BottoneRiprendiPartita;
     private javax.swing.JButton BottoneSalvaPartita;
     private javax.swing.JButton BottoneSceltaPersonaggio;
@@ -530,6 +526,5 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JLabel txtInventarioCorrente;
     private javax.swing.JLabel txtInventarioMassimo;
     private javax.swing.JLabel txtMangia;
-    private javax.swing.JLabel txtOggettoPerso;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,7 @@ public class Gestore {
     private JLabel lblNemico;
     private JLabel lblOggetto;
     private FileManager fm;
+    private ArrayList<String> tipoOggettoRandom = new ArrayList<>();
     
     public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto){
         this.punteggio = punteggio;
@@ -25,6 +26,10 @@ public class Gestore {
         
         fm = new FileManager();
         fm.letturaFile();
+        
+        tipoOggettoRandom.add("Cibo");
+        tipoOggettoRandom.add("Acqua");
+        tipoOggettoRandom.add("Medicine");
     }
     
     public int getPunteggio(){
@@ -34,7 +39,6 @@ public class Gestore {
     public void setPunteggio(int punteggio){
         this.punteggio += punteggio;
     }
-    
     
     public void prossimoGiorno(){
         Random rd  = new Random();
@@ -51,6 +55,23 @@ public class Gestore {
         else{
             lblOggetto.setVisible(true);
             lblNemico.setVisible(false);
+            
+            int randomOggetto = rd.nextInt(tipoOggettoRandom.size());
+            String tipo = tipoOggettoRandom.get(randomOggetto);
+            
+            switch (tipo){
+                case "Cibo":
+                    lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\OggettoCibo.png"));
+                    break;
+                    
+                case "Acqua":
+                    lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\acquaGDR.png"));
+                    break;
+                
+                case "Medicine":
+                    lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\MedicineGDR.png"));
+                    break;
+            }
         }
     }
 }
