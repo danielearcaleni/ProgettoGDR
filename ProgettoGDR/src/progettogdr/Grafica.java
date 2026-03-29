@@ -17,6 +17,8 @@ public class Grafica extends javax.swing.JFrame {
     private String player = "";
     Enemy nemico = new Enemy("PrimoNemico", 100, "NomeOgettoPerso", 20);
     private Gestore g1;
+    private Inventario inventario;
+    private String oggettoCorrente;
     /**
      * Creates new form Grafica
      */
@@ -24,6 +26,7 @@ public class Grafica extends javax.swing.JFrame {
         initComponents();
 
         getContentPane().setLayout(null);
+        inventario = new Inventario();
         g1 = new Gestore(0, txtArea, lblNemico, lblOggetto);
         PanelScegliPersonaggio.setLayout(new BorderLayout());
         PanelScegliPersonaggio.add(new PanelConSfondo());
@@ -212,20 +215,20 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneRiprendiPartitaActionPerformed(evt);
             }
         });
-        PanelPausa.add(BottoneRiprendiPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 100, -1, -1));
+        PanelPausa.add(BottoneRiprendiPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
 
         BottoneSalvaPartita.setText("SalvaPartita");
-        PanelPausa.add(BottoneSalvaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 100, -1));
+        PanelPausa.add(BottoneSalvaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 130, -1));
 
         BottoneCaricaPartita.setText("CaricaPartita");
-        PanelPausa.add(BottoneCaricaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 100, -1));
+        PanelPausa.add(BottoneCaricaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 130, -1));
 
         jLabel3.setFont(new java.awt.Font("Rockwell Extra Bold", 3, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 0, 0));
         jLabel3.setText("Pausa");
-        PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 160, -1));
+        PanelPausa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, -1));
 
-        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 180, 130));
+        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 160, 150));
         PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 150, -1, -1));
 
         BottoneBevi.setText("Bevi");
@@ -234,7 +237,7 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneBeviActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
+        PanelInizioPartita.add(BottoneBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 343, -1, 30));
 
         BottoneMangia.setText("Mangia");
         BottoneMangia.addActionListener(new java.awt.event.ActionListener() {
@@ -242,7 +245,7 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneMangiaActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 303, -1, 30));
 
         Pausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/SimboloMenuPausa.png"))); // NOI18N
         Pausa.addActionListener(new java.awt.event.ActionListener() {
@@ -253,13 +256,13 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.add(Pausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 24, 65, 41));
 
         BottoneAbilitaSpeciale.setText("Abilità Speciale");
-        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, -1));
+        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
 
         txtMangia.setText("0");
-        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, 40, 20));
+        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 40, 30));
 
         txtBevi.setText("0");
-        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 40, 20));
+        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 40, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel5.setText("Inventario Massimo: ");
@@ -292,7 +295,7 @@ public class Grafica extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
         jLabel12.setText("Sete:");
-        PanelInizioPartita.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 40, -1));
+        PanelInizioPartita.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 40, -1));
 
         jLabel13.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
         jLabel13.setText("100");
@@ -300,7 +303,7 @@ public class Grafica extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
         jLabel14.setText("100");
-        PanelInizioPartita.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 60, -1));
+        PanelInizioPartita.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 60, -1));
 
         BottoneAvanza.setText("Avanti");
         BottoneAvanza.addActionListener(new java.awt.event.ActionListener() {
@@ -308,7 +311,7 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneAvanzaActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 310, -1, 50));
+        PanelInizioPartita.add(BottoneAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, 50));
 
         txtArea.setColumns(20);
         txtArea.setRows(5);
@@ -322,8 +325,13 @@ public class Grafica extends javax.swing.JFrame {
         lblOggetto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/OggettoCibo.png"))); // NOI18N
         PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 130, 150));
 
-        BottonePrendiOggetto.setText("Prendi");
-        PanelInizioPartita.add(BottonePrendiOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 260, -1, 30));
+        BottonePrendiOggetto.setText("Raccogli");
+        BottonePrendiOggetto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottonePrendiOggettoActionPerformed(evt);
+            }
+        });
+        PanelInizioPartita.add(BottonePrendiOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, 30));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -467,6 +475,18 @@ public class Grafica extends javax.swing.JFrame {
     private void BottoneAvanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneAvanzaActionPerformed
         g1.prossimoGiorno();
     }//GEN-LAST:event_BottoneAvanzaActionPerformed
+
+    private void BottonePrendiOggettoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonePrendiOggettoActionPerformed
+        if(lblOggetto.isVisible() && inventario.interaLista() < 10){
+            inventario.aggiungiOggetto(oggettoCorrente);
+            txtInventarioCorrente.setText("" + (Integer.parseInt(txtInventarioCorrente.getText()) + 1));
+            lblOggetto.setVisible(false);
+            System.out.println("Oggetto raccolto");
+        }
+        else{
+            System.out.println("Non ci sono oggetti da raccogliere");
+        }
+    }//GEN-LAST:event_BottonePrendiOggettoActionPerformed
 
     /**
      * @param args the command line arguments

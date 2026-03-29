@@ -39,10 +39,6 @@ public class FileManager {
             System.out.println("Errore nella lettura del file");
         }
         return frasi;
-    } 
-    
-    public boolean isEnemy(){
-        return nemico;
     }
     
     public ArrayList<String> ritornaTipoNemico(){

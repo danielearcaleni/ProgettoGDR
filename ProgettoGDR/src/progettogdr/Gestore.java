@@ -17,6 +17,7 @@ public class Gestore {
     private JLabel lblOggetto;
     private FileManager fm;
     private ArrayList<String> tipoOggettoRandom = new ArrayList<>();
+    private String oggettoCorrente;
     
     public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto){
         this.punteggio = punteggio;
@@ -57,9 +58,9 @@ public class Gestore {
             lblNemico.setVisible(false);
             
             int randomOggetto = rd.nextInt(tipoOggettoRandom.size());
-            String tipo = tipoOggettoRandom.get(randomOggetto);
+            oggettoCorrente = tipoOggettoRandom.get(randomOggetto);
             
-            switch (tipo){
+            switch (oggettoCorrente){
                 case "Cibo":
                     lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\OggettoCibo.png"));
                     break;
