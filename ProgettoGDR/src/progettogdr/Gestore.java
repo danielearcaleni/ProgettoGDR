@@ -62,15 +62,15 @@ public class Gestore {
             
             switch (oggettoCorrente){
                 case "Cibo":
-                    lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\OggettoCibo.png"));
+                    lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/OggettoCibo.png")));
                     break;
                     
                 case "Acqua":
-                    lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\acquaGDR.png"));
+                    lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/acquaGDR.png")));
                     break;
                 
                 case "Medicine":
-                    lblOggetto.setIcon(new ImageIcon("C:\\Users\\compu\\OneDrive\\Documenti\\GitHub\\ProgettoGDR\\ProgettoGDR\\src\\progettogdr\\MedicineGDR.png"));
+                    lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/MedicineGDR.png")));
                     break;
             }
         }
