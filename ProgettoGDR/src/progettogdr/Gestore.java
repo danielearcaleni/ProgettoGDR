@@ -50,6 +50,7 @@ public class Gestore {
         txtArea.setText(frase);
         
         if(fm.ritornaTipoNemico().contains(frase)){
+            lblNemico.setIcon(new ImageIcon(getClass().getResource("/Immagini/NemicoGDR.png")));
             lblNemico.setVisible(true);
             lblOggetto.setVisible(false);
         }

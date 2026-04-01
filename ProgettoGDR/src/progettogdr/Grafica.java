@@ -205,7 +205,6 @@ public class Grafica extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-     
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,7 +251,6 @@ public class Grafica extends javax.swing.JFrame {
         });
         PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 303, -1, 30));
 
-        
         Pausa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PausaActionPerformed(evt);
@@ -323,11 +321,7 @@ public class Grafica extends javax.swing.JFrame {
         jScrollPane1.setViewportView(txtArea);
 
         PanelInizioPartita.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 270));
-
-        
         PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, 140));
-
-
         PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 130, 150));
 
         BottonePrendiOggetto.setText("Raccogli");
@@ -345,6 +339,7 @@ public class Grafica extends javax.swing.JFrame {
         txtContaGiorno.setFont(new java.awt.Font("Poor Richard", 3, 18)); // NOI18N
         txtContaGiorno.setText("0");
         PanelInizioPartita.add(txtContaGiorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 70, 20));
+
         PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 150, 140));
 
         BottoneControllaInventario.setText("Controlla Inventario");
