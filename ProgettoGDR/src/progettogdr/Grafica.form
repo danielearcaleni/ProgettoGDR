@@ -180,7 +180,7 @@
         <Component class="javax.swing.JButton" name="Pausa">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/progettogdr/Immagini/SimboloMenuPausa.png"/>
+              <Image iconType="2" name="C:\Users\arcaleni.daniele2\Documents\GitHub\ProgettoGDR\ProgettoGDR\Immagini\SimboloMenuPausa.png"/>
             </Property>
           </Properties>
           <Events>

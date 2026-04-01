@@ -53,24 +53,24 @@ public class Grafica extends javax.swing.JFrame {
         lblOggetto.setVisible(false);
         lblNemico.setVisible(false);
         GameOver.setVisible(false);
-        
-        ImageIcon icon = new ImageIcon(getClass().getResource("/progettogdr/Immagini/SimboloMenuPausa.png"));
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Immagini/SimboloMenuPausa.png"));
         Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         Pausa.setIcon(new ImageIcon(img));
         PanelInizioPartita.setVisible(false);
 
         PanelPersonaggio1.setLayout(new BorderLayout());
-        JLabel label1 = creaLabel("/progettogdr/Immagini/PersonaggioGDR.png", 90, 120);
+        JLabel label1 = creaLabel("/Immagini/PersonaggioGDR.png", 90, 120);
         PanelPersonaggio1.add(label1, BorderLayout.CENTER);
         PanelPersonaggio1.setBounds(25, 90, 150, 200);
         
         PanelPersonaggio2.setLayout(new BorderLayout());
-        JLabel label2 = creaLabel("/progettogdr/Immagini/secondoPersonaggioGDR.png", 90, 120);
+        JLabel label2 = creaLabel("/Immagini/secondoPersonaggioGDR.png", 90, 120);
         PanelPersonaggio2.add(label2, BorderLayout.CENTER);
         PanelPersonaggio2.setBounds(230, 90, 160, 200);
         
         PanelPersonaggio3.setLayout(new BorderLayout());
-        JLabel label3 = creaLabel("/progettogdr/Immagini/TerzoPersonaggioGDR.png", 90, 120);
+        JLabel label3 = creaLabel("/Immagini/TerzoPersonaggioGDR.png", 90, 120);
         PanelPersonaggio3.add(label3, BorderLayout.CENTER);
         PanelPersonaggio3.setBounds(463, 90, 140, 200);
         
@@ -80,11 +80,11 @@ public class Grafica extends javax.swing.JFrame {
                 selezionato = (JPanel) e.getSource();
 
                 if (selezionato == PanelPersonaggio1) {
-                    player = "/progettogdr/Immagini/PersonaggioGDR.png";
+                    player = "/Immagini/PersonaggioGDR.png";
                     VitaPersonaggio.setText("120");
                 }
                 else if (selezionato == PanelPersonaggio2) {
-                    player = "/progettogdr/Immagini/secondoPersonaggioGDR.png";
+                    player = "/Immagini/secondoPersonaggioGDR.png";
                     txtMangia.setText("2");
                     txtBevi.setText("2");
                     txtInventarioCorrente.setText("4");
@@ -92,7 +92,7 @@ public class Grafica extends javax.swing.JFrame {
                     inventario.aggiungiOggetto("Acqua");
                 }
                 else if (selezionato == PanelPersonaggio3) {
-                    player = "/progettogdr/Immagini/TerzoPersonaggioGDR.png";
+                    player = "/Immagini/TerzoPersonaggioGDR.png";
                     txtMangia.setText("0");
                     txtBevi.setText("0");
                     txtInventarioCorrente.setText("0");
@@ -122,13 +122,13 @@ public class Grafica extends javax.swing.JFrame {
 
     class PanelConSfondo extends JPanel {
 
-        private Image sfondo = new ImageIcon(getClass().getResource("/progettogdr/Immagini/SelezionePersonaggio.png")).getImage();
+        private Image sfondo = new ImageIcon(getClass().getResource("/Immagini/SelezionePersonaggio.png")).getImage();
 
         @Override
 
         public void paint(Graphics g) {
             super.paint(g);
-            Image sfondo = new ImageIcon(getClass().getResource("/progettogdr/Immagini/SelezionePersonaggio.png")).getImage();
+            Image sfondo = new ImageIcon(getClass().getResource("/Immagini/SelezionePersonaggio.png")).getImage();
             g.drawImage(sfondo, 0, 0, getWidth(), getHeight(), this);
 
         }
@@ -205,11 +205,7 @@ public class Grafica extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"))); // NOI18N
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/TerzoPersonaggioGDR.png"))); // NOI18N
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
+     
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -256,7 +252,7 @@ public class Grafica extends javax.swing.JFrame {
         });
         PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 303, -1, 30));
 
-        Pausa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/Immagini/SimboloMenuPausa.png"))); // NOI18N
+        
         Pausa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PausaActionPerformed(evt);
@@ -328,10 +324,10 @@ public class Grafica extends javax.swing.JFrame {
 
         PanelInizioPartita.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, -1, 270));
 
-        lblNemico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/NemicoGDR.png"))); // NOI18N
+        
         PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, 140));
 
-        lblOggetto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/OggettoCibo.png"))); // NOI18N
+
         PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 130, 150));
 
         BottonePrendiOggetto.setText("Raccogli");
@@ -349,8 +345,6 @@ public class Grafica extends javax.swing.JFrame {
         txtContaGiorno.setFont(new java.awt.Font("Poor Richard", 3, 18)); // NOI18N
         txtContaGiorno.setText("0");
         PanelInizioPartita.add(txtContaGiorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 70, 20));
-
-        GameOver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/ImmagineGameOver.jpg"))); // NOI18N
         PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, 150, 140));
 
         BottoneControllaInventario.setText("Controlla Inventario");
