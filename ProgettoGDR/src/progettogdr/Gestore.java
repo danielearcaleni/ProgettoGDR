@@ -47,7 +47,7 @@ public class Gestore {
         ArrayList<String> frasi = fm.getFrasi();
         int numero = rd.nextInt(frasi.size());
         String frase = frasi.get(numero);
-        txtArea.setText(frase);
+        txtArea.append(frase + "\n");
         
         if(fm.ritornaTipoNemico().contains(frase)){
             lblNemico.setIcon(new ImageIcon(getClass().getResource("/Immagini/NemicoGDR.png")));
@@ -64,14 +64,17 @@ public class Gestore {
             switch (oggettoCorrente){
                 case "Cibo":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/OggettoCibo.png")));
+                    lblOggetto.setText("Cibo");
                     break;
                     
                 case "Acqua":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/acquaGDR.png")));
+                    lblOggetto.setText("Acqua");
                     break;
                 
                 case "Medicine":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/MedicineGDR.png")));
+                    lblOggetto.setText("Medicine");
                     break;
             }
         }

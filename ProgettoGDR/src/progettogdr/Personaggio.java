@@ -10,21 +10,15 @@ package progettogdr;
  */
 public class Personaggio {
     private String nome;
-    private int attacco;
     private int fame;
     private int sete;
     private int salute;
     
-    public Personaggio(String nome, int attacco, int fame, int sete, int salute){
+    public Personaggio(String nome, int fame, int sete, int salute){
         this.nome = nome;
-        this.attacco = attacco;
         this.fame = fame;
         this.sete = sete;
         this.salute = salute;
-    }
-    
-    public void aumentaAttacco(int attacco){
-        this.attacco += attacco;
     }
     
     public void bevi(int disseta){
@@ -36,7 +30,14 @@ public class Personaggio {
     }
     
     public void perdiVita(int vitaPersa){
-        this.salute += vitaPersa;
+        this.salute -= vitaPersa;
+        if(salute < 0){
+            salute = 0;
+        }
+    }
+    
+    public int getVita(){
+        return salute;
     }
     
     public void aumentaVita(int vitaAumentata){
