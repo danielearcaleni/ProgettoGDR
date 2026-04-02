@@ -16,10 +16,8 @@ public class Inventario {
         inventario = new ArrayList<>();
     }
     
-    public void mostraInventario(){
-        for(String componenti: inventario){
-            System.out.println(componenti);
-        }
+    public ArrayList<String> getInventario(){
+        return inventario;
     }
     
     public void aggiungiOggetto(String oggetto){

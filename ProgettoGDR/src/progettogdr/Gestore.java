@@ -18,12 +18,14 @@ public class Gestore {
     private FileManager fm;
     private ArrayList<String> tipoOggettoRandom = new ArrayList<>();
     private String oggettoCorrente;
+    private String tipoOggetto;
     
-    public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto){
+    public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto, String tipoOggetto){
         this.punteggio = punteggio;
         this.txtArea = txtArea;
         this.lblNemico = lblNemico;
         this.lblOggetto = lblOggetto;
+        this.tipoOggetto = tipoOggetto;
         
         fm = new FileManager();
         fm.letturaFile();
@@ -64,17 +66,17 @@ public class Gestore {
             switch (oggettoCorrente){
                 case "Cibo":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/OggettoCibo.png")));
-                    lblOggetto.setText("Cibo");
+                    tipoOggetto = "Cibo";
                     break;
                     
                 case "Acqua":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/acquaGDR.png")));
-                    lblOggetto.setText("Acqua");
+                    tipoOggetto = "Acqua";
                     break;
                 
                 case "Medicine":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/MedicineGDR.png")));
-                    lblOggetto.setText("Medicine");
+                    tipoOggetto = "Medicine";
                     break;
             }
         }

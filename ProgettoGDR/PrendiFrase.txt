@@ -1,5 +1,5 @@
-Frase1;Nemico
+Frase1;Oggetto
 Frase2;Oggetto
 Frase3;Nemico
-Frase4;Nemico
+Frase4;Oggetto
 Frase5;Oggetto

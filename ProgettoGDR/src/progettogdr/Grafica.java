@@ -20,6 +20,7 @@ public class Grafica extends javax.swing.JFrame {
     private Gestore g1;
     private Inventario inventario;
     private String oggettoCorrente;
+    private String tipoOggetto = " ";
     /**
      * Creates new form Grafica
      */
@@ -28,7 +29,7 @@ public class Grafica extends javax.swing.JFrame {
 
         getContentPane().setLayout(null);
         inventario = new Inventario();
-        g1 = new Gestore(0, txtArea, lblNemico, lblOggetto);
+        g1 = new Gestore(0, txtArea, lblNemico, lblOggetto, tipoOggetto);
         PanelScegliPersonaggio.setLayout(new BorderLayout());
         PanelScegliPersonaggio.add(new PanelConSfondo());
 
@@ -54,6 +55,8 @@ public class Grafica extends javax.swing.JFrame {
         lblOggetto.setVisible(false);
         lblNemico.setVisible(false);
         GameOver.setVisible(false);
+        lblNemico.setText(" ");
+        lblOggetto.setText(" ");
 
         ImageIcon icon = new ImageIcon(getClass().getResource("/Immagini/SimboloMenuPausa.png"));
         Image img = icon.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH);
@@ -326,7 +329,7 @@ public class Grafica extends javax.swing.JFrame {
         });
         PanelInizioPartita.add(BottoneAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, 50));
         PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, 140));
-        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 130, 150));
+        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 140, 150));
 
         BottonePrendiOggetto.setText("Raccogli");
         BottonePrendiOggetto.addActionListener(new java.awt.event.ActionListener() {
@@ -344,7 +347,7 @@ public class Grafica extends javax.swing.JFrame {
         txtContaGiorno.setText("0");
         PanelInizioPartita.add(txtContaGiorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 70, 20));
 
-        PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 530));
+        PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 130, 110));
 
         BottoneControllaInventario.setText("Controlla Inventario");
         BottoneControllaInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -547,11 +550,11 @@ public class Grafica extends javax.swing.JFrame {
         if(lblOggetto.isVisible() && inventario.interaLista() < 10){
             inventario.aggiungiOggetto(oggettoCorrente);
             txtInventarioCorrente.setText("" + (Integer.parseInt(txtInventarioCorrente.getText()) + 1));
-            if(lblOggetto.getText().equals("Cibo")){
+            if(tipoOggetto.equals("Cibo")){
                 txtMangia.setText("" + (Integer.parseInt(txtMangia.getText()) + 1));
                 BottoneMangia.setEnabled(true);
             }
-            else if(lblOggetto.getText().equals("Acqua")){
+            else if(tipoOggetto.equals("Acqua")){
                 txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) + 1));
                 BottoneBevi.setEnabled(true);
             }
@@ -559,16 +562,14 @@ public class Grafica extends javax.swing.JFrame {
             txtArea.append("Oggetto raccolto\n");
         }
         else{
-            System.out.println("Non ci sono oggetti da raccogliere");
+            txtArea.append("Non ci sono oggetti da raccogliere\n");
         }
     }//GEN-LAST:event_BottonePrendiOggettoActionPerformed
 
     private void BottoneControllaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneControllaInventarioActionPerformed
-        /*
-        for(String g : inventario){
-            System.out.println(g);
+        for(String g : inventario.getInventario()){
+            txtArea.append(g + "\n");
         }
-        */
     }//GEN-LAST:event_BottoneControllaInventarioActionPerformed
 
     /**

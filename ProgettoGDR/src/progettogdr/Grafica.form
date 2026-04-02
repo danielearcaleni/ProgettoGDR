@@ -393,7 +393,7 @@
         <Component class="javax.swing.JLabel" name="lblOggetto">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="230" y="110" width="130" height="150"/>
+              <AbsoluteConstraints x="230" y="110" width="140" height="150"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -444,7 +444,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="0" width="620" height="530"/>
+              <AbsoluteConstraints x="490" y="420" width="130" height="110"/>
             </Constraint>
           </Constraints>
         </Component>
