@@ -38,7 +38,6 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio2.setOpaque(false);
         PanelPersonaggio3.setOpaque(false);
 
-        BottoneSceltaPersonaggio.setBounds(250, 370, 119, 30);
         BottoneSceltaPersonaggio.setEnabled(false);
 
         setTitle("Selezione Personaggio");
@@ -65,31 +64,30 @@ public class Grafica extends javax.swing.JFrame {
         PanelInizioPartita.setVisible(false);
 
         PanelPersonaggio1.setLayout(new BorderLayout());
-        JLabel label1 = creaLabel("/Immagini/PersonaggioGDR.png", 90, 120);
+        JLabel label1 = creaLabel("/Immagini/PersonaggioGDR.png", 180, 240);
         PanelPersonaggio1.add(label1, BorderLayout.CENTER);
-        PanelPersonaggio1.setBounds(25, 90, 150, 200);
         
         PanelPersonaggio2.setLayout(new BorderLayout());
-        JLabel label2 = creaLabel("/Immagini/secondoPersonaggioGDR.png", 90, 120);
+        JLabel label2 = creaLabel("/Immagini/secondoPersonaggioGDR.png", 140, 220);
         PanelPersonaggio2.add(label2, BorderLayout.CENTER);
-        PanelPersonaggio2.setBounds(230, 90, 160, 200);
         
         PanelPersonaggio3.setLayout(new BorderLayout());
-        JLabel label3 = creaLabel("/Immagini/TerzoPersonaggioGDR.png", 90, 120);
+        JLabel label3 = creaLabel("/Immagini/TerzoPersonaggioGDR.png", 180, 240);
         PanelPersonaggio3.add(label3, BorderLayout.CENTER);
-        PanelPersonaggio3.setBounds(463, 90, 140, 200);
         
         MouseAdapter selezioneListener = new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 selezionato = (JPanel) e.getSource();
 
-                if (selezionato == PanelPersonaggio1) {
-                    player = new Personaggio("Nome", 100, 100, 100);
+                if (selezionato == PanelPersonaggio1){
+                    player = new Personaggio("Nome", 100, 100, 120);
                     personaggioImage = "/Immagini/PersonaggioGDR.png";
                     VitaPersonaggio.setText("120");
+                    BottoneMangia.setEnabled(false);
+                    BottoneBevi.setEnabled(false);
                 }
-                else if (selezionato == PanelPersonaggio2) {
+                else if (selezionato == PanelPersonaggio2){
                     player = new Personaggio("Nome", 100, 100, 100);
                     personaggioImage = "/Immagini/secondoPersonaggioGDR.png";
                     txtMangia.setText("2");
@@ -97,8 +95,10 @@ public class Grafica extends javax.swing.JFrame {
                     txtInventarioCorrente.setText("4");
                     inventario.aggiungiOggetto("Cibo");
                     inventario.aggiungiOggetto("Acqua");
+                    BottoneMangia.setEnabled(true);
+                    BottoneBevi.setEnabled(true);
                 }
-                else if (selezionato == PanelPersonaggio3) {
+                else if (selezionato == PanelPersonaggio3){
                     player = new Personaggio("Nome", 100, 100, 100);
                     personaggioImage = "/Immagini/TerzoPersonaggioGDR.png";
                     txtMangia.setText("0");
@@ -106,6 +106,7 @@ public class Grafica extends javax.swing.JFrame {
                     txtInventarioCorrente.setText("0");
                     txtInventarioMassimo.setText("12");
                     BottoneMangia.setEnabled(false);
+                    BottoneBevi.setEnabled(false);
                 }
 
                 evidenziaSelezione();
@@ -239,14 +240,14 @@ public class Grafica extends javax.swing.JFrame {
         lblPausa.setText("Pausa");
         PanelPausa.add(lblPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, -1));
 
-        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 130, 110));
+        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 650, 130, 110));
 
         txtArea.setColumns(20);
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
 
-        PanelInizioPartita.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, 210, 260));
-        PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 150, -1, -1));
+        PanelInizioPartita.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 50, 350, 360));
+        PanelInizioPartita.add(labelPersonaggioScelto, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 200, 270));
 
         BottoneBevi.setText("Bevi");
         BottoneBevi.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +255,7 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneBeviActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 343, -1, 30));
+        PanelInizioPartita.add(BottoneBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 470, -1, 30));
 
         BottoneMangia.setText("Mangia");
         BottoneMangia.addActionListener(new java.awt.event.ActionListener() {
@@ -262,64 +263,66 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneMangiaActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 303, -1, 30));
+        PanelInizioPartita.add(BottoneMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, -1, 30));
 
         Pausa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PausaActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(Pausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 24, 65, 41));
+        PanelInizioPartita.add(Pausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 24, 90, 60));
 
         BottoneAbilitaSpeciale.setText("Abilità Speciale");
-        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
+        PanelInizioPartita.add(BottoneAbilitaSpeciale, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, -1, -1));
 
+        txtMangia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtMangia.setText("0");
-        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, 40, 30));
+        PanelInizioPartita.add(txtMangia, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 430, 40, 30));
 
+        txtBevi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtBevi.setText("0");
-        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, 40, 30));
+        PanelInizioPartita.add(txtBevi, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, 40, 30));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 22)); // NOI18N
         jLabel5.setText("Inventario Massimo: ");
-        PanelInizioPartita.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, -1, -1));
+        PanelInizioPartita.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 650, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 22)); // NOI18N
         jLabel6.setText("Capienza inventario: ");
-        PanelInizioPartita.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, -1, -1));
+        PanelInizioPartita.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 610, -1, -1));
 
-        txtInventarioCorrente.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        txtInventarioCorrente.setFont(new java.awt.Font("Segoe UI", 3, 22)); // NOI18N
         txtInventarioCorrente.setText("0");
-        PanelInizioPartita.add(txtInventarioCorrente, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 80, -1));
+        PanelInizioPartita.add(txtInventarioCorrente, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 610, 80, -1));
 
-        txtInventarioMassimo.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        txtInventarioMassimo.setFont(new java.awt.Font("Segoe UI", 3, 22)); // NOI18N
         txtInventarioMassimo.setText("10");
-        PanelInizioPartita.add(txtInventarioMassimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 440, 90, -1));
+        PanelInizioPartita.add(txtInventarioMassimo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 650, 90, -1));
 
-        jLabel7.setFont(new java.awt.Font("Sans Serif Collection", 3, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Sans Serif Collection", 3, 18)); // NOI18N
         jLabel7.setText("Vita:");
-        PanelInizioPartita.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 40, -1));
+        PanelInizioPartita.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 50, -1));
 
-        jLabel8.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Perpetua", 3, 18)); // NOI18N
         jLabel8.setText("Fame:");
-        PanelInizioPartita.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 40, -1));
+        PanelInizioPartita.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 440, 60, -1));
 
-        VitaPersonaggio.setFont(new java.awt.Font("Sans Serif Collection", 3, 14)); // NOI18N
+        VitaPersonaggio.setFont(new java.awt.Font("Sans Serif Collection", 3, 18)); // NOI18N
         VitaPersonaggio.setForeground(new java.awt.Color(51, 255, 51));
         VitaPersonaggio.setText("100");
-        PanelInizioPartita.add(VitaPersonaggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 80, -1));
+        PanelInizioPartita.add(VitaPersonaggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 80, -1));
 
-        jLabel12.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Perpetua", 3, 18)); // NOI18N
         jLabel12.setText("Sete:");
-        PanelInizioPartita.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 40, -1));
+        PanelInizioPartita.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 480, 60, -1));
 
-        txtAffamato.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        txtAffamato.setFont(new java.awt.Font("Perpetua", 3, 18)); // NOI18N
         txtAffamato.setText("100");
-        PanelInizioPartita.add(txtAffamato, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 60, -1));
+        PanelInizioPartita.add(txtAffamato, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 440, 60, -1));
 
-        txtAssetato.setFont(new java.awt.Font("Perpetua", 3, 14)); // NOI18N
+        txtAssetato.setFont(new java.awt.Font("Perpetua", 3, 18)); // NOI18N
         txtAssetato.setText("100");
-        PanelInizioPartita.add(txtAssetato, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 60, -1));
+        PanelInizioPartita.add(txtAssetato, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 480, 60, -1));
 
         BottoneAvanza.setText("Avanti");
         BottoneAvanza.addActionListener(new java.awt.event.ActionListener() {
@@ -327,9 +330,9 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneAvanzaActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 310, -1, 50));
-        PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, 140));
-        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 140, 150));
+        PanelInizioPartita.add(BottoneAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 440, -1, 50));
+        PanelInizioPartita.add(lblNemico, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 220, 190));
+        PanelInizioPartita.add(lblOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 120, 210, 200));
 
         BottonePrendiOggetto.setText("Raccogli");
         BottonePrendiOggetto.addActionListener(new java.awt.event.ActionListener() {
@@ -337,15 +340,15 @@ public class Grafica extends javax.swing.JFrame {
                 BottonePrendiOggettoActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottonePrendiOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, 30));
+        PanelInizioPartita.add(BottonePrendiOggetto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 450, -1, 30));
 
-        jLabel15.setFont(new java.awt.Font("Poor Richard", 3, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Poor Richard", 3, 28)); // NOI18N
         jLabel15.setText("Giorno Numero:");
-        PanelInizioPartita.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 130, -1));
+        PanelInizioPartita.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 200, -1));
 
-        txtContaGiorno.setFont(new java.awt.Font("Poor Richard", 3, 18)); // NOI18N
+        txtContaGiorno.setFont(new java.awt.Font("Poor Richard", 3, 28)); // NOI18N
         txtContaGiorno.setText("0");
-        PanelInizioPartita.add(txtContaGiorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 70, 20));
+        PanelInizioPartita.add(txtContaGiorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 70, 30));
 
         PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 130, 110));
 
@@ -355,7 +358,7 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneControllaInventarioActionPerformed(evt);
             }
         });
-        PanelInizioPartita.add(BottoneControllaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 450, 160, -1));
+        PanelInizioPartita.add(BottoneControllaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 490, 160, -1));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -364,27 +367,27 @@ public class Grafica extends javax.swing.JFrame {
         PanelPersonaggio2.setLayout(PanelPersonaggio2Layout);
         PanelPersonaggio2Layout.setHorizontalGroup(
             PanelPersonaggio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGap(0, 210, Short.MAX_VALUE)
         );
         PanelPersonaggio2Layout.setVerticalGroup(
             PanelPersonaggio2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
-        PanelScegliPersonaggio.add(PanelPersonaggio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
+        PanelScegliPersonaggio.add(PanelPersonaggio2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 210, 240));
 
         javax.swing.GroupLayout PanelPersonaggio3Layout = new javax.swing.GroupLayout(PanelPersonaggio3);
         PanelPersonaggio3.setLayout(PanelPersonaggio3Layout);
         PanelPersonaggio3Layout.setHorizontalGroup(
             PanelPersonaggio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+            .addGap(0, 210, Short.MAX_VALUE)
         );
         PanelPersonaggio3Layout.setVerticalGroup(
             PanelPersonaggio3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
-        PanelScegliPersonaggio.add(PanelPersonaggio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 90, -1, -1));
+        PanelScegliPersonaggio.add(PanelPersonaggio3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 270, 210, 240));
 
         BottoneSceltaPersonaggio.setText("Scegli");
         BottoneSceltaPersonaggio.addActionListener(new java.awt.event.ActionListener() {
@@ -392,56 +395,52 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneSceltaPersonaggioActionPerformed(evt);
             }
         });
-        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 119, 30));
+        PanelScegliPersonaggio.add(BottoneSceltaPersonaggio, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 690, 119, 30));
 
         javax.swing.GroupLayout PanelPersonaggio1Layout = new javax.swing.GroupLayout(PanelPersonaggio1);
         PanelPersonaggio1.setLayout(PanelPersonaggio1Layout);
         PanelPersonaggio1Layout.setHorizontalGroup(
             PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 160, Short.MAX_VALUE)
+            .addGap(0, 210, Short.MAX_VALUE)
         );
         PanelPersonaggio1Layout.setVerticalGroup(
             PanelPersonaggio1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
-        PanelScegliPersonaggio.add(PanelPersonaggio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        PanelScegliPersonaggio.add(PanelPersonaggio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 210, 240));
 
         jLabel9.setBackground(new java.awt.Color(51, 255, 51));
         jLabel9.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 255, 51));
         jLabel9.setText("+20 Vita Max");
-        PanelScegliPersonaggio.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, -1, -1));
+        PanelScegliPersonaggio.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 550, -1, -1));
 
         jLabel10.setBackground(new java.awt.Color(51, 255, 51));
         jLabel10.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 255, 51));
         jLabel10.setText("+2 Cibo, +2 Acqua");
-        PanelScegliPersonaggio.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, -1, -1));
+        PanelScegliPersonaggio.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 550, -1, -1));
 
         jLabel11.setBackground(new java.awt.Color(51, 255, 51));
         jLabel11.setFont(new java.awt.Font("SansSerif", 3, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 255, 51));
         jLabel11.setText("+2 Spazio Inventario");
-        PanelScegliPersonaggio.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, -1, -1));
+        PanelScegliPersonaggio.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 550, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2385, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(PanelInizioPartita, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, 2385, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE))
+                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE))
         );
 
         pack();
@@ -449,7 +448,7 @@ public class Grafica extends javax.swing.JFrame {
 
     private void BottoneSceltaPersonaggioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneSceltaPersonaggioActionPerformed
     ImageIcon icon = new ImageIcon(getClass().getResource(personaggioImage));
-        Image img = icon.getImage().getScaledInstance(100, 130, Image.SCALE_SMOOTH);
+        Image img = icon.getImage().getScaledInstance(140, 220, Image.SCALE_SMOOTH);
         labelPersonaggioScelto.setIcon(new ImageIcon(img));
 
         PanelScegliPersonaggio.setVisible(false);
@@ -463,6 +462,7 @@ public class Grafica extends javax.swing.JFrame {
         BottoneAbilitaSpeciale.setVisible(false);
         BottoneAvanza.setVisible(false);
         BottonePrendiOggetto.setVisible(false);
+        BottoneControllaInventario.setVisible(false);
     }//GEN-LAST:event_PausaActionPerformed
 
     private void BottoneRiprendiPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneRiprendiPartitaActionPerformed
@@ -482,8 +482,11 @@ public class Grafica extends javax.swing.JFrame {
         else{
             BottoneMangia.setEnabled(false);
         }
-        VitaPersonaggio.setText("" + (Integer.parseInt(VitaPersonaggio.getText()) - 10));
-        txtAffamato.setText("" + (Integer.parseInt(txtAffamato.getText()) + 20));
+        player.aumentaVita(10);
+        player.mangia(20);
+        
+        txtAffamato.setText("" + player.getFame());
+        VitaPersonaggio.setText("" + player.getVita());
 
         if(Integer.parseInt(txtMangia.getText()) <= 0){
             BottoneMangia.setEnabled(false);
@@ -506,15 +509,21 @@ public class Grafica extends javax.swing.JFrame {
     private void BottoneBeviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneBeviActionPerformed
         if(Integer.parseInt(txtBevi.getText()) > 0){
             txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) - 1));
+            player.bevi(20);
+            txtAssetato.setText("" + player.getSete());
         }
-        txtAssetato.setText("" + (Integer.parseInt(txtAssetato.getText()) + 20));
+        if (Integer.parseInt(txtBevi.getText()) <= 0) {
+            BottoneBevi.setEnabled(false);
+        }
+        
         GameOver.setVisible(true);
     }//GEN-LAST:event_BottoneBeviActionPerformed
 
     private void BottoneAvanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneAvanzaActionPerformed
         g1.prossimoGiorno();
         txtContaGiorno.setText("" + (Integer.parseInt(txtContaGiorno.getText()) + 1));
-        txtAffamato.setText("" + (Integer.parseInt(txtAffamato.getText()) - 20));
+        player.mangia(-20);
+        player.bevi(-20);
         txtAssetato.setText("" + (Integer.parseInt(txtAssetato.getText()) - 20));
 
         if (txtContaGiorno.getText().equals("10")) {
@@ -523,12 +532,13 @@ public class Grafica extends javax.swing.JFrame {
             BottoneAbilitaSpeciale.setEnabled(false);
             BottoneAvanza.setEnabled(false);
             BottonePrendiOggetto.setEnabled(false);
+            BottoneControllaInventario.setEnabled(false);
             //Rendi visibile il panel di vittoria
         }
         
         if(Integer.parseInt(txtAffamato.getText()) < 0){
             GameOver.setVisible(true);
-            //mettere l'immagien del Game Over
+            //mettere l'immagine del Game Over
         }
         
         if(Integer.parseInt(txtAssetato.getText()) < 0){

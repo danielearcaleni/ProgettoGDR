@@ -23,10 +23,16 @@ public class Personaggio {
     
     public void bevi(int disseta){
         this.sete += disseta;
+        if(sete > 100){
+            sete = 100;
+        }
     }
     
     public void mangia(int sfama){
         this.fame += sfama;
+        if(fame > 100){
+            fame = 100;
+        }
     }
     
     public void perdiVita(int vitaPersa){
@@ -39,9 +45,20 @@ public class Personaggio {
     public int getVita(){
         return salute;
     }
-    
+
+    public int getFame() {
+        return fame;
+    }
+
+    public int getSete() {
+        return sete;
+    }
+
     public void aumentaVita(int vitaAumentata){
         this.salute += vitaAumentata;
+        if(salute > 100){
+            salute = 100;
+        }
     }
     
     public void abilitaSpeciale(){
