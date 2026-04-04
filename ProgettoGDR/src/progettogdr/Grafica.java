@@ -20,7 +20,6 @@ public class Grafica extends javax.swing.JFrame {
     private Gestore g1;
     private Inventario inventario;
     private String oggettoCorrente;
-    private String tipoOggetto = " ";
     /**
      * Creates new form Grafica
      */
@@ -29,7 +28,7 @@ public class Grafica extends javax.swing.JFrame {
 
         getContentPane().setLayout(null);
         inventario = new Inventario();
-        g1 = new Gestore(0, txtArea, lblNemico, lblOggetto, tipoOggetto);
+        g1 = new Gestore(0, txtArea, lblNemico, lblOggetto);
         PanelScegliPersonaggio.setLayout(new BorderLayout());
         PanelScegliPersonaggio.add(new PanelConSfondo());
 
@@ -483,7 +482,7 @@ public class Grafica extends javax.swing.JFrame {
             BottoneMangia.setEnabled(false);
         }
         player.aumentaVita(10);
-        player.mangia(20);
+        player.mangia(30);
         
         txtAffamato.setText("" + player.getFame());
         VitaPersonaggio.setText("" + player.getVita());
@@ -492,24 +491,13 @@ public class Grafica extends javax.swing.JFrame {
             BottoneMangia.setEnabled(false);
         }
         
-        if (Integer.parseInt(VitaPersonaggio.getText()) < 70 && Integer.parseInt(VitaPersonaggio.getText()) >= 50) {
-            VitaPersonaggio.setForeground(Color.yellow);
-        }
-        else if (Integer.parseInt(VitaPersonaggio.getText()) < 50 && Integer.parseInt(VitaPersonaggio.getText()) >= 30) {
-            VitaPersonaggio.setForeground(Color.orange);
-        }
-        else if (Integer.parseInt(VitaPersonaggio.getText()) < 30) {
-            VitaPersonaggio.setForeground(Color.red);
-        }
-        else {
-            VitaPersonaggio.setForeground(Color.green);
-        }
+        txtInventarioCorrente.setText("" + (Integer.parseInt(txtInventarioCorrente.getText()) - 1));
     }//GEN-LAST:event_BottoneMangiaActionPerformed
 
     private void BottoneBeviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneBeviActionPerformed
         if(Integer.parseInt(txtBevi.getText()) > 0){
             txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) - 1));
-            player.bevi(20);
+            player.bevi(30);
             txtAssetato.setText("" + player.getSete());
         }
         if (Integer.parseInt(txtBevi.getText()) <= 0) {
@@ -517,6 +505,7 @@ public class Grafica extends javax.swing.JFrame {
         }
         
         GameOver.setVisible(true);
+        txtInventarioCorrente.setText("" + (Integer.parseInt(txtInventarioCorrente.getText()) - 1));
     }//GEN-LAST:event_BottoneBeviActionPerformed
 
     private void BottoneAvanzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneAvanzaActionPerformed
@@ -542,26 +531,39 @@ public class Grafica extends javax.swing.JFrame {
             player.perdiVita(20);
             VitaPersonaggio.setText("" + player.getVita());
         }
-        if(player.getFame() < 0 || player.getSete() < 0 || player.getVita() <= 0){
+        if (player.getFame() < 0 || player.getSete() < 0 || player.getVita() <= 0) {
             GameOver.setVisible(true);
             //mettere l'immagine del GameOver
         }
+        int vitaAttuale = player.getVita();
+        Color calcolaColore = g1.calcolaColoreVita(vitaAttuale);
+        VitaPersonaggio.setForeground(calcolaColore);
     }//GEN-LAST:event_BottoneAvanzaActionPerformed
 
     private void BottonePrendiOggettoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonePrendiOggettoActionPerformed
-        if(lblOggetto.isVisible() && inventario.interaLista() < 10){
-            inventario.aggiungiOggetto(oggettoCorrente);
-            txtInventarioCorrente.setText("" + (Integer.parseInt(txtInventarioCorrente.getText()) + 1));
-            if(tipoOggetto.equals("Cibo")){
-                txtMangia.setText("" + (Integer.parseInt(txtMangia.getText()) + 1));
-                BottoneMangia.setEnabled(true);
+        if (lblOggetto.isVisible()){
+            int inventarioAttuale = Integer.parseInt(txtInventarioCorrente.getText());
+            if (inventarioAttuale < 10){
+                BottonePrendiOggetto.setEnabled(true);
+                String oggettoTrovato = g1.getOggettoCorrente();
+                if (oggettoTrovato != null){
+                    inventario.aggiungiOggetto(oggettoTrovato);
+                    txtInventarioCorrente.setText("" + (Integer.parseInt(txtInventarioCorrente.getText()) + 1));
+
+                    if (oggettoTrovato.equals("Cibo")){
+                        txtMangia.setText("" + (Integer.parseInt(txtMangia.getText()) + 1));
+                        BottoneMangia.setEnabled(true);
+                    } else if (oggettoTrovato.equals("Acqua")){
+                        txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) + 1));
+                        BottoneBevi.setEnabled(true);
+                    }
+                    lblOggetto.setVisible(false);
+                    txtArea.append("Hai raccolto: " + oggettoTrovato + "\n");
+                }
             }
-            else if(tipoOggetto.equals("Acqua")){
-                txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) + 1));
-                BottoneBevi.setEnabled(true);
+            else{
+                BottonePrendiOggetto.setEnabled(false);
             }
-            lblOggetto.setVisible(false);
-            txtArea.append("Oggetto raccolto\n");
         }
         else{
             txtArea.append("Non ci sono oggetti da raccogliere\n");
@@ -569,9 +571,17 @@ public class Grafica extends javax.swing.JFrame {
     }//GEN-LAST:event_BottonePrendiOggettoActionPerformed
 
     private void BottoneControllaInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneControllaInventarioActionPerformed
+        String vedi = "";
         for(String g : inventario.getInventario()){
-            txtArea.append(g + "\n");
+            if(g == null){
+                g = "Medicine";
+            }
+            vedi += "\n" + g + "\n";
         }
+        if(vedi == null){
+            vedi = "Inventario vuoto \n";
+        }
+        txtArea.append("////////////////\n" + vedi + "\n////////////////\n");
     }//GEN-LAST:event_BottoneControllaInventarioActionPerformed
 
     /**

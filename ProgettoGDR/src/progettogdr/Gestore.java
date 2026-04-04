@@ -6,6 +6,7 @@ package progettogdr;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.awt.Color;
 /**
  *
  * @author arcaleni.daniele2
@@ -18,14 +19,12 @@ public class Gestore {
     private FileManager fm;
     private ArrayList<String> tipoOggettoRandom = new ArrayList<>();
     private String oggettoCorrente;
-    private String tipoOggetto;
     
-    public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto, String tipoOggetto){
+    public Gestore(int punteggio, JTextArea txtArea, JLabel lblNemico, JLabel lblOggetto){
         this.punteggio = punteggio;
         this.txtArea = txtArea;
         this.lblNemico = lblNemico;
         this.lblOggetto = lblOggetto;
-        this.tipoOggetto = tipoOggetto;
         
         fm = new FileManager();
         fm.letturaFile();
@@ -41,6 +40,25 @@ public class Gestore {
     
     public void setPunteggio(int punteggio){
         this.punteggio += punteggio;
+    }
+    
+    public String getOggettoCorrente(){
+        return this.oggettoCorrente;
+    }
+    
+    public Color calcolaColoreVita(int vita){
+        if(vita >= 70){
+            return Color.green;
+        }
+        else if (vita >= 50){
+            return Color.yellow;
+        }
+        else if (vita >= 30){
+            return Color.ORANGE;
+        }
+        else{
+            return Color.red;
+        }
     }
     
     public void prossimoGiorno(){
@@ -66,17 +84,14 @@ public class Gestore {
             switch (oggettoCorrente){
                 case "Cibo":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/OggettoCibo.png")));
-                    tipoOggetto = "Cibo";
                     break;
                     
                 case "Acqua":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/acquaGDR.png")));
-                    tipoOggetto = "Acqua";
                     break;
                 
                 case "Medicine":
                     lblOggetto.setIcon(new ImageIcon(getClass().getResource("/Immagini/MedicineGDR.png")));
-                    tipoOggetto = "Medicine";
                     break;
             }
         }
