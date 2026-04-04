@@ -524,7 +524,9 @@ public class Grafica extends javax.swing.JFrame {
         txtContaGiorno.setText("" + (Integer.parseInt(txtContaGiorno.getText()) + 1));
         player.mangia(-20);
         player.bevi(-20);
-        txtAssetato.setText("" + (Integer.parseInt(txtAssetato.getText()) - 20));
+        
+        txtAffamato.setText("" + player.getFame());
+        txtAssetato.setText("" + player.getSete());
 
         if (txtContaGiorno.getText().equals("10")) {
             BottoneBevi.setEnabled(false);
@@ -536,24 +538,14 @@ public class Grafica extends javax.swing.JFrame {
             //Rendi visibile il panel di vittoria
         }
         
-        if(Integer.parseInt(txtAffamato.getText()) < 0){
-            GameOver.setVisible(true);
-            //mettere l'immagine del Game Over
-        }
-        
-        if(Integer.parseInt(txtAssetato.getText()) < 0){
-            GameOver.setVisible(true);
-        }
-        
-        if(Integer.parseInt(VitaPersonaggio.getText()) < 0){
-            GameOver.setVisible(true);
-        }
-        
         if(lblNemico.isVisible()){
             player.perdiVita(20);
-            VitaPersonaggio.setText(player.getVita() + "");
+            VitaPersonaggio.setText("" + player.getVita());
         }
-        
+        if(player.getFame() < 0 || player.getSete() < 0 || player.getVita() <= 0){
+            GameOver.setVisible(true);
+            //mettere l'immagine del GameOver
+        }
     }//GEN-LAST:event_BottoneAvanzaActionPerformed
 
     private void BottonePrendiOggettoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottonePrendiOggettoActionPerformed
