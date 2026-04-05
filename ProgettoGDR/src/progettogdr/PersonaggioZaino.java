@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package progettogdr;
-
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
@@ -12,14 +11,14 @@ import javax.swing.JTextArea;
  * @author compu
  */
 public class PersonaggioZaino extends Personaggio{
-    private JTextArea txtArea;
-    private JLabel lblCibo;
-    private JLabel lblAcqua;
     
-    public PersonaggioZaino(String nome, int fame, int sete, int salute, JLabel lblCibo, JLabel lblAcqua){
+    public PersonaggioZaino(String nome, int fame, int sete, int salute){
         super(nome, fame, sete, salute);
-        this.lblCibo = lblCibo;
-        this.lblAcqua = lblAcqua;
     }
     
+    @Override
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+        txtArea.append("--------ABILITA SPECIALE USATA--------\n");
+        txtArea.append("Hai preso uno di CIBO  e uno di ACQUA, ma hai perso 10 di vita\n");
+    }
 }

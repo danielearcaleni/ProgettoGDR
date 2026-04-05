@@ -3,22 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package progettogdr;
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
 /**
  *
  * @author compu
  */
 public class PersonaggioVita extends Personaggio{
-    private JTextArea txtArea;
     
-    public PersonaggioVita(String nome, int fame, int sete, int salute){
+    public PersonaggioVita(String nome, int fame, int sete, int salute) {
         super(nome, fame, sete, salute);
     }
     
-    public void abilitaSpeciale(){
-        this.aumentaVita(30);
+    @Override
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+        this.aumentaVita(40);
         this.bevi(-10);
+        
         txtArea.append("--------ABILITA SPECIALE USATA--------\n");
-        txtArea.append("Ti sei curato ma hai perso 10 di Sete\n");
+        txtArea.append("Hai ottenuto 40 di vita ma hai perso 10 di SETE\n");
     }
 }

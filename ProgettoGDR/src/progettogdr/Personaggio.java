@@ -4,6 +4,9 @@
  */
 package progettogdr;
 
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+
 /**
  *
  * @author arcaleni.daniele2
@@ -13,12 +16,14 @@ public class Personaggio {
     private int fame;
     private int sete;
     private int salute;
+    private int saluteMassima;
     
     public Personaggio(String nome, int fame, int sete, int salute){
         this.nome = nome;
         this.fame = fame;
         this.sete = sete;
         this.salute = salute;
+        this.saluteMassima = salute;
     }
     
     public void bevi(int disseta){
@@ -56,8 +61,8 @@ public class Personaggio {
 
     public void aumentaVita(int vitaAumentata){
         this.salute += vitaAumentata;
-        if(salute > 100){
-            salute = 100;
+        if(salute > saluteMassima){
+            salute = saluteMassima;
         }
     }
     
@@ -68,7 +73,7 @@ public class Personaggio {
         }
     }
     
-    public void abilitaSpeciale(){
-        //completala
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+        
     }
 }
