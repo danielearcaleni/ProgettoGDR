@@ -61,7 +61,14 @@ public class Personaggio {
         }
     }
     
+    public void diminuisciVita(int vitaDiminuita){
+        this.salute -= vitaDiminuita;
+        if(salute < 0){
+            salute = 0;
+        }
+    }
+    
     public void abilitaSpeciale(){
-        //completala cosa ci metto?
+        //completala
     }
 }

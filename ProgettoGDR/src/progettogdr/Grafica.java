@@ -93,6 +93,8 @@ public class Grafica extends javax.swing.JFrame {
                     txtBevi.setText("2");
                     txtInventarioCorrente.setText("4");
                     inventario.aggiungiOggetto("Cibo");
+                    inventario.aggiungiOggetto("Cibo");
+                    inventario.aggiungiOggetto("Acqua");
                     inventario.aggiungiOggetto("Acqua");
                     BottoneMangia.setEnabled(true);
                     BottoneBevi.setEnabled(true);
@@ -477,15 +479,18 @@ public class Grafica extends javax.swing.JFrame {
         if (Integer.parseInt(txtMangia.getText()) > 0) {
             txtMangia.setText("" + (Integer.parseInt(txtMangia.getText()) - 1));
             BottoneMangia.setEnabled(true);
+            inventario.rimuoviOggetto("Cibo");
         }
         else{
             BottoneMangia.setEnabled(false);
         }
         player.aumentaVita(10);
         player.mangia(30);
+        player.bevi(10);
         
         txtAffamato.setText("" + player.getFame());
         VitaPersonaggio.setText("" + player.getVita());
+        txtAssetato.setText("" + player.getSete());
 
         if(Integer.parseInt(txtMangia.getText()) <= 0){
             BottoneMangia.setEnabled(false);
@@ -499,6 +504,7 @@ public class Grafica extends javax.swing.JFrame {
             txtBevi.setText("" + (Integer.parseInt(txtBevi.getText()) - 1));
             player.bevi(30);
             txtAssetato.setText("" + player.getSete());
+            inventario.rimuoviOggetto("Acqua");
         }
         if (Integer.parseInt(txtBevi.getText()) <= 0) {
             BottoneBevi.setEnabled(false);
