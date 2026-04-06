@@ -6,12 +6,13 @@ package progettogdr;
 
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import java.io.Serializable;
 
 /**
  *
  * @author arcaleni.daniele2
  */
-public class Personaggio {
+public class Personaggio implements Serializable{
     private String nome;
     private int fame;
     private int sete;

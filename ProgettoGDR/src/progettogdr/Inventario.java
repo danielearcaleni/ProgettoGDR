@@ -5,11 +5,12 @@
 package progettogdr;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.io.Serializable;
 /**
  *
  * @author arcaleni.daniele2
  */
-public class Inventario {
+public class Inventario implements Serializable{
     private ArrayList<String> inventario;
     
     public Inventario(){

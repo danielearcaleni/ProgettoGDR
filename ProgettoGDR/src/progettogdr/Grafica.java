@@ -201,13 +201,13 @@ public class Grafica extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         PanelInizioPartita = new javax.swing.JPanel();
-        lblVittoria = new javax.swing.JLabel();
-        GameOver = new javax.swing.JLabel();
         PanelPausa = new javax.swing.JPanel();
         BottoneRiprendiPartita = new javax.swing.JButton();
         BottoneSalvaPartita = new javax.swing.JButton();
         BottoneCaricaPartita = new javax.swing.JButton();
         lblPausa = new javax.swing.JLabel();
+        lblVittoria = new javax.swing.JLabel();
+        GameOver = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         labelPersonaggioScelto = new javax.swing.JLabel();
@@ -244,15 +244,16 @@ public class Grafica extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/secondoPersonaggio.png"))); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/TerzoPersonaggioGDR.png"))); // NOI18N
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/progettogdr/PersonaggioGDR.png"))); // NOI18N
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelInizioPartita.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblVittoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/HaiVinto.png"))); // NOI18N
-        PanelInizioPartita.add(lblVittoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 790));
-
-        GameOver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/ImmagineGameOver.jpg"))); // NOI18N
-        PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 780));
 
         PanelPausa.setBackground(new java.awt.Color(0, 0, 0));
         PanelPausa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -263,20 +264,36 @@ public class Grafica extends javax.swing.JFrame {
                 BottoneRiprendiPartitaActionPerformed(evt);
             }
         });
-        PanelPausa.add(BottoneRiprendiPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        PanelPausa.add(BottoneRiprendiPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 310, -1, 30));
 
         BottoneSalvaPartita.setText("SalvaPartita");
-        PanelPausa.add(BottoneSalvaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, 130, -1));
+        BottoneSalvaPartita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneSalvaPartitaActionPerformed(evt);
+            }
+        });
+        PanelPausa.add(BottoneSalvaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, 130, 30));
 
         BottoneCaricaPartita.setText("CaricaPartita");
-        PanelPausa.add(BottoneCaricaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 130, -1));
+        BottoneCaricaPartita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneCaricaPartitaActionPerformed(evt);
+            }
+        });
+        PanelPausa.add(BottoneCaricaPartita, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 430, 130, 30));
 
-        lblPausa.setFont(new java.awt.Font("Rockwell Extra Bold", 3, 36)); // NOI18N
+        lblPausa.setFont(new java.awt.Font("Rockwell Extra Bold", 3, 40)); // NOI18N
         lblPausa.setForeground(new java.awt.Color(255, 0, 0));
         lblPausa.setText("Pausa");
-        PanelPausa.add(lblPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, 160, -1));
+        PanelPausa.add(lblPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 160, 60));
 
-        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 650, 130, 110));
+        PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 790));
+
+        lblVittoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/HaiVinto.png"))); // NOI18N
+        PanelInizioPartita.add(lblVittoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 790));
+
+        GameOver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/ImmagineGameOver.jpg"))); // NOI18N
+        PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 780));
 
         txtArea.setColumns(20);
         txtArea.setRows(5);
@@ -575,7 +592,7 @@ public class Grafica extends javax.swing.JFrame {
         txtAffamato.setText("" + player.getFame());
         txtAssetato.setText("" + player.getSete());
 
-        if (txtContaGiorno.getText().equals("3")){
+        if (txtContaGiorno.getText().equals("14")){
             BottoneBevi.setEnabled(false);
             BottoneMangia.setEnabled(false);
             BottoneAbilitaSpeciale.setEnabled(false);
@@ -674,6 +691,14 @@ public class Grafica extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BottoneUsaMedicineActionPerformed
+
+    private void BottoneSalvaPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneSalvaPartitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BottoneSalvaPartitaActionPerformed
+
+    private void BottoneCaricaPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneCaricaPartitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BottoneCaricaPartitaActionPerformed
 
     /**
      * @param args the command line arguments
