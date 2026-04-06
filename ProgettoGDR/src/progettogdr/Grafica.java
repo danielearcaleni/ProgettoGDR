@@ -53,6 +53,7 @@ public class Grafica extends javax.swing.JFrame {
         lblOggetto.setVisible(false);
         lblNemico.setVisible(false);
         GameOver.setVisible(false);
+        lblVittoria.setVisible(false);
         lblNemico.setText(" ");
         lblOggetto.setText(" ");
 
@@ -161,6 +162,31 @@ public class Grafica extends javax.swing.JFrame {
             selezionato.setBorder(BorderFactory.createLineBorder(Color.RED, 3));
         }
     }
+    
+    public void mostraPanelSconfitta() {
+        GameOver.setVisible(true);
+        BottoneSceltaPersonaggio.setVisible(false);
+        BottoneBevi.setVisible(false);
+        BottoneMangia.setVisible(false);
+        BottoneAbilitaSpeciale.setVisible(false);
+        BottoneAvanza.setVisible(false);
+        BottonePrendiOggetto.setVisible(false);
+        BottoneControllaInventario.setVisible(false);
+        BottoneUsaMedicine.setVisible(false);
+    }
+
+    public void mostraPanelVittoria() {
+        lblVittoria.setVisible(true);
+        BottoneSceltaPersonaggio.setVisible(false);
+        BottoneBevi.setVisible(false);
+        BottoneMangia.setVisible(false);
+        BottoneAbilitaSpeciale.setVisible(false);
+        BottoneAvanza.setVisible(false);
+        BottonePrendiOggetto.setVisible(false);
+        BottoneControllaInventario.setVisible(false);
+        BottoneUsaMedicine.setVisible(false);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,6 +201,8 @@ public class Grafica extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         PanelInizioPartita = new javax.swing.JPanel();
+        lblVittoria = new javax.swing.JLabel();
+        GameOver = new javax.swing.JLabel();
         PanelPausa = new javax.swing.JPanel();
         BottoneRiprendiPartita = new javax.swing.JButton();
         BottoneSalvaPartita = new javax.swing.JButton();
@@ -205,8 +233,8 @@ public class Grafica extends javax.swing.JFrame {
         BottonePrendiOggetto = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         txtContaGiorno = new javax.swing.JLabel();
-        GameOver = new javax.swing.JLabel();
         BottoneControllaInventario = new javax.swing.JButton();
+        BottoneUsaMedicine = new javax.swing.JButton();
         PanelScegliPersonaggio = new javax.swing.JPanel();
         PanelPersonaggio2 = new javax.swing.JPanel();
         PanelPersonaggio3 = new javax.swing.JPanel();
@@ -219,6 +247,12 @@ public class Grafica extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelInizioPartita.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblVittoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/HaiVinto.png"))); // NOI18N
+        PanelInizioPartita.add(lblVittoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 790));
+
+        GameOver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Immagini/ImmagineGameOver.jpg"))); // NOI18N
+        PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 780));
 
         PanelPausa.setBackground(new java.awt.Color(0, 0, 0));
         PanelPausa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -357,8 +391,6 @@ public class Grafica extends javax.swing.JFrame {
         txtContaGiorno.setText("0");
         PanelInizioPartita.add(txtContaGiorno, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 70, 30));
 
-        PanelInizioPartita.add(GameOver, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 420, 130, 110));
-
         BottoneControllaInventario.setText("Controlla Inventario");
         BottoneControllaInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,6 +398,14 @@ public class Grafica extends javax.swing.JFrame {
             }
         });
         PanelInizioPartita.add(BottoneControllaInventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 490, 160, -1));
+
+        BottoneUsaMedicine.setText("Usa Medicine");
+        BottoneUsaMedicine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneUsaMedicineActionPerformed(evt);
+            }
+        });
+        PanelInizioPartita.add(BottoneUsaMedicine, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 460, 120, -1));
 
         PanelScegliPersonaggio.setBackground(new java.awt.Color(255, 255, 204));
         PanelScegliPersonaggio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -441,13 +481,13 @@ public class Grafica extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 2385, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, 2385, Short.MAX_VALUE))
+                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PanelScegliPersonaggio, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, 974, Short.MAX_VALUE))
+                .addComponent(PanelInizioPartita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -535,14 +575,15 @@ public class Grafica extends javax.swing.JFrame {
         txtAffamato.setText("" + player.getFame());
         txtAssetato.setText("" + player.getSete());
 
-        if (txtContaGiorno.getText().equals("10")) {
+        if (txtContaGiorno.getText().equals("3")){
             BottoneBevi.setEnabled(false);
             BottoneMangia.setEnabled(false);
             BottoneAbilitaSpeciale.setEnabled(false);
             BottoneAvanza.setEnabled(false);
             BottonePrendiOggetto.setEnabled(false);
             BottoneControllaInventario.setEnabled(false);
-            //Rendi visibile il panel di vittoria
+            BottoneUsaMedicine.setEnabled(false);
+            mostraPanelVittoria();
         }
         
         if(Integer.parseInt(txtMangia.getText()) > 0){
@@ -558,7 +599,7 @@ public class Grafica extends javax.swing.JFrame {
         }
         if (player.getFame() < 0 || player.getSete() < 0 || player.getVita() <= 0) {
             GameOver.setVisible(true);
-            //mettere l'immagine del GameOver
+            mostraPanelSconfitta();
         }
         int vitaAttuale = player.getVita();
         Color calcolaColore = g1.calcolaColoreVita(vitaAttuale);
@@ -619,6 +660,21 @@ public class Grafica extends javax.swing.JFrame {
         BottoneAbilitaSpeciale.setEnabled(false);
     }//GEN-LAST:event_BottoneAbilitaSpecialeActionPerformed
 
+    private void BottoneUsaMedicineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneUsaMedicineActionPerformed
+        
+        if(inventario.getInventario().contains("Medicine")){
+        player.aumentaVita(30);
+        VitaPersonaggio.setText("" + player.getVita());
+        inventario.rimuoviOggetto("Medicine");
+        txtArea.append("Hai usato Medicine\n");
+        }
+        else{
+            txtArea.append("Non hai medicine da prendere\n");
+        }
+        
+        
+    }//GEN-LAST:event_BottoneUsaMedicineActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -647,6 +703,7 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JButton BottoneRiprendiPartita;
     private javax.swing.JButton BottoneSalvaPartita;
     private javax.swing.JButton BottoneSceltaPersonaggio;
+    private javax.swing.JButton BottoneUsaMedicine;
     private javax.swing.JLabel GameOver;
     private javax.swing.JPanel PanelInizioPartita;
     private javax.swing.JPanel PanelPausa;
@@ -673,6 +730,7 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JLabel lblNemico;
     private javax.swing.JLabel lblOggetto;
     private javax.swing.JLabel lblPausa;
+    private javax.swing.JLabel lblVittoria;
     private javax.swing.JLabel txtAffamato;
     private javax.swing.JTextArea txtArea;
     private javax.swing.JLabel txtAssetato;
