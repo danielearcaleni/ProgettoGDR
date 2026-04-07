@@ -1,5 +1,28 @@
-Frase1;Oggetto
-Frase2;Oggetto
-Frase3;Nemico
-Frase4;Oggetto
-Frase5;Oggetto
+Un bandito solitario estrae un coltello e ti carica senza preavviso!;Nemico
+C'è uno scheletro appoggiato a un muro con una sacca ancora intatta;Oggetto
+Dalle fognature emerge una figura umanoide ringhiante.;Nemico
+Sul sedile posteriore di un'auto mezza distrutta noti una scatola;Oggetto
+Una guardia impazzita decide che sei tu il suo prossimo bersaglio.;Nemico
+Sposti una roccia pesante e scopri un nascondiglio segreto;Oggetto
+In mezzo alla cenere trovi qualcosa miracolosamente intatto.;Oggetto
+Un cacciatore di taglie pesantemente armato ti ha appena trovato.;Nemico
+Noti una piccola cassa incastrata tra i rami di un grosso albero.;Oggetto
+Qualcuno ha perso i propri rifornimenti in questo punto esatto.;Oggetto
+Un predone lancia un urlo di guerra e ti si avventa contro con una mazza.;Nemico
+Sul bancone di un vecchio bar c'è qualcosa di interessante.;Oggetto
+Un sopravvissuto disperato cerca di derubarti impugnando un coltello arrugginito.;Nemico
+Dentro un bidone della spazzatura trovi un pacchetto avvolto nel nastro.;Oggetto
+C'è una fessura nel muro e dentro intravedi un oggetto.;Oggetto
+Un mercenario pesantemente armato esige un pedaggio di sangue per farti passare.;Nemico
+Sotto un asse del pavimento scricchiolante scopri uno scomparto segreto.;Oggetto
+Entri in una baracca buia e sorprendi un contrabbandiere che nascondeva il bottino.;Nemico
+All'interno di una cassetta della posta mezza distrutta c'è un pacchetto intatto.;Oggetto
+Un disertore in fuga decide che ha bisogno del tuo equipaggiamento per sopravvivere.;Nemico
+Un viandante spaventato scappa alla tua vista, lasciando cadere la sua bisaccia.;Oggetto
+Scavalcando un muretto, atterri per sbaglio nel mezzo di un accampamento ostile.;Nemico
+Un predone sbuca da sotto un furgone bruciato cercando di afferrarti le caviglie.;Nemico
+C'è una borsa incastrata tra le lamiere di un'auto, sembra piena.;Oggetto
+Un sopravvissuto impazzito ti scambia per colui che gli ha rubato le scorte!;Nemico
+Tra i detriti di un negozio saccheggiato trovi una giacca con le tasche piene.;Oggetto
+Un finto ferito a terra si alza di scatto e ti colpisce.;Nemico
+Noti una piccola cassaforte portatile abbandonata sul ciglio della strada.;Oggetto
