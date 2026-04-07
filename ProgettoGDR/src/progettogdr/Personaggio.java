@@ -74,7 +74,7 @@ public class Personaggio implements Serializable{
         }
     }
     
-    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea, Inventario inventario){
         
     }
 }

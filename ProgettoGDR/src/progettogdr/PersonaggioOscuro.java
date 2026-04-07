@@ -17,8 +17,11 @@ public class PersonaggioOscuro extends Personaggio{
     }
     
     @Override
-    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea, Inventario inventario){
         this.diminuisciVita(10);
+        
+        inventario.aggiungiOggetto("Cibo");
+        inventario.aggiungiOggetto("Acqua");
         
         lblCibo.setText("" + (Integer.parseInt(lblCibo.getText()) + 1));
         lblAcqua.setText("" + (Integer.parseInt(lblAcqua.getText()) + 1));

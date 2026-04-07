@@ -16,11 +16,11 @@ public class PersonaggioVita extends Personaggio{
     }
     
     @Override
-    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea, Inventario inventario){
         this.aumentaVita(40);
-        this.bevi(-10);
+        this.bevi(-20);
         
         txtArea.append("--------ABILITA SPECIALE USATA--------\n");
-        txtArea.append("Hai ottenuto 40 di vita ma hai perso 10 di SETE\n");
+        txtArea.append("Hai ottenuto 40 di vita ma hai perso 20 di SETE\n");
     }
 }

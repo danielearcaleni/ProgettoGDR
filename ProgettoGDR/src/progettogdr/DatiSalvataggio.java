@@ -9,12 +9,25 @@ import java.io.Serializable;
  * @author compu
  */
 public class DatiSalvataggio implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    private Personaggio playerSalvato;
-    private Inventario inventarioSalvato;
+    public Personaggio playerSalvato;
+    public Inventario inventarioSalvato;
+    public int giornoSalvato;
+    public String immaginePersonaggio;
+    public String ciboSalvato;
+    public String acquaSalvato;
+    public String inventarioCorrenteSalvato;
+    public String InventarioMassimoSalvato;
 
-    public DatiSalvataggio(Personaggio playerSalvato, Inventario inventarioSalvato){
+    public DatiSalvataggio(Personaggio playerSalvato, Inventario inventarioSalvato, int giornoSalvato, String immaginePersonaggio, String ciboSalvato, String acquaSalvato, String inventarioCorrenteSalvato, String InventarioMassimoSalvato){
         this.playerSalvato = playerSalvato;
         this.inventarioSalvato = inventarioSalvato;
+        this.giornoSalvato = giornoSalvato;
+        this.immaginePersonaggio = immaginePersonaggio;
+        this.ciboSalvato = ciboSalvato;
+        this.acquaSalvato = acquaSalvato;
+        this.inventarioCorrenteSalvato = inventarioCorrenteSalvato;
+        this.InventarioMassimoSalvato = InventarioMassimoSalvato;
     }
 }

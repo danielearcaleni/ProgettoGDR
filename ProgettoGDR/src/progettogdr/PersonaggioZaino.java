@@ -17,8 +17,15 @@ public class PersonaggioZaino extends Personaggio{
     }
     
     @Override
-    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea){
+    public void abilitaSpeciale(JLabel lblCibo, JLabel lblAcqua, JLabel lblInventarioCorrente, JTextArea txtArea, Inventario inventario){
+        this.mangia(-15);
+        this.bevi(-15);
+        
+        inventario.aggiungiOggetto("Medicine");
+        
+        lblInventarioCorrente.setText("" + (Integer.parseInt(lblInventarioCorrente.getText()) + 1));
+        
         txtArea.append("--------ABILITA SPECIALE USATA--------\n");
-        txtArea.append("Hai preso uno di CIBO  e uno di ACQUA, ma hai perso 10 di vita\n");
+        txtArea.append("Hai trovato Medicine ma haipreso 15 di fame e sete per rovistare a fondo nello zaino\n");
     }
 }
