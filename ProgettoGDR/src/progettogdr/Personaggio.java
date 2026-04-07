@@ -48,6 +48,18 @@ public class Personaggio implements Serializable{
         }
     }
     
+    public void setVita(int vita){
+        this.salute = vita;
+    }
+    
+    public void setFame(int fame){
+        this.fame = fame;
+    }
+    
+    public void setSete(int sete){
+        this.sete = sete;
+    }
+    
     public int getVita(){
         return salute;
     }

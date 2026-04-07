@@ -12,6 +12,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 /**
  *
@@ -220,6 +224,8 @@ public class Grafica extends javax.swing.JFrame {
         BottoneSalvaPartita = new javax.swing.JButton();
         BottoneCaricaPartita = new javax.swing.JButton();
         lblPausa = new javax.swing.JLabel();
+        BottoneSalvaCSV = new javax.swing.JButton();
+        BottoneCaricaCSV = new javax.swing.JButton();
         BottoneControllaInventario = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
@@ -302,6 +308,22 @@ public class Grafica extends javax.swing.JFrame {
         lblPausa.setForeground(new java.awt.Color(255, 0, 0));
         lblPausa.setText("Pausa");
         PanelPausa.add(lblPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 160, 60));
+
+        BottoneSalvaCSV.setText("SalvaCSV");
+        BottoneSalvaCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneSalvaCSVActionPerformed(evt);
+            }
+        });
+        PanelPausa.add(BottoneSalvaCSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 490, 130, 30));
+
+        BottoneCaricaCSV.setText("CaricaCSV");
+        BottoneCaricaCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BottoneCaricaCSVActionPerformed(evt);
+            }
+        });
+        PanelPausa.add(BottoneCaricaCSV, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 540, 130, 30));
 
         PanelInizioPartita.add(PanelPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1540, 790));
 
@@ -537,6 +559,8 @@ public class Grafica extends javax.swing.JFrame {
         BottoneAvanza.setVisible(false);
         BottonePrendiOggetto.setVisible(false);
         BottoneControllaInventario.setVisible(false);
+        BottoneUsaMedicine.setVisible(false);
+        txtArea.setVisible(false);
     }//GEN-LAST:event_PausaActionPerformed
 
     private void BottoneRiprendiPartitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneRiprendiPartitaActionPerformed
@@ -547,6 +571,8 @@ public class Grafica extends javax.swing.JFrame {
         BottoneAvanza.setVisible(true);
         BottonePrendiOggetto.setVisible(true);
         BottoneControllaInventario.setVisible(true);
+        BottoneUsaMedicine.setVisible(true);
+        txtArea.setVisible(true);
     }//GEN-LAST:event_BottoneRiprendiPartitaActionPerformed
 
     private void BottoneMangiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneMangiaActionPerformed
@@ -603,7 +629,7 @@ public class Grafica extends javax.swing.JFrame {
         txtAffamato.setText("" + player.getFame());
         txtAssetato.setText("" + player.getSete());
 
-        if (txtContaGiorno.getText().equals("14")){
+        if (txtContaGiorno.getText().equals("10")){
             BottoneBevi.setEnabled(false);
             BottoneMangia.setEnabled(false);
             BottoneAbilitaSpeciale.setEnabled(false);
@@ -629,6 +655,7 @@ public class Grafica extends javax.swing.JFrame {
         if (player.getFame() < 0 || player.getSete() < 0 || player.getVita() <= 0) {
             GameOver.setVisible(true);
             mostraPanelSconfitta();
+            txtArea.setVisible(false);
         }
         int vitaAttuale = player.getVita();
         Color calcolaColore = g1.calcolaColoreVita(vitaAttuale);
@@ -758,6 +785,97 @@ public class Grafica extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_BottoneCaricaPartitaActionPerformed
 
+    private void BottoneSalvaCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneSalvaCSVActionPerformed
+        String filePath = "dati.csv";
+        
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))){
+            String vita = VitaPersonaggio.getText();
+            String fame = txtAffamato.getText();
+            String sete = txtAssetato.getText();
+            String cibo = txtMangia.getText();
+            String acqua = txtBevi.getText();
+            String inventarioCorrente = txtInventarioCorrente.getText();
+            String inventarioMassimo = txtInventarioMassimo.getText();
+            String giorno = txtContaGiorno.getText();
+            
+            String immagine = "null";
+            if (this.personaggioImage != null) {
+                immagine = this.personaggioImage;
+            }
+            
+            String inventarioUnito = "";
+            boolean primoOggetto = true;
+            
+            for (String oggetto : inventario.getInventario()) {
+                if(primoOggetto == false){
+                    inventarioUnito = inventarioUnito + ",";
+                }
+                inventarioUnito = inventarioUnito + oggetto;
+                
+                primoOggetto = false;
+            }
+            if(inventarioUnito.equals("")){
+                inventarioUnito = "vuoto";
+            }
+            
+            String rigaDaSalvare = vita + ";" + fame + ";" + sete + ";" + cibo + ";" + acqua + ";" + inventarioCorrente + ";" + inventarioMassimo + ";" + giorno + ";" + immagine + ";" + inventarioUnito;
+            
+            writer.write(rigaDaSalvare);
+            System.out.println("Partita CSV salvata con successo");
+        }
+        catch(IOException e){
+            System.out.println("Errore durante il salvataggio del file CSV");
+        }
+    }//GEN-LAST:event_BottoneSalvaCSVActionPerformed
+
+    private void BottoneCaricaCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BottoneCaricaCSVActionPerformed
+        String filePath = "dati.csv";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String rigaLetta = reader.readLine();
+            if(rigaLetta != null){
+                String[] dati = rigaLetta.split(";");
+                VitaPersonaggio.setText(dati[0]);
+                txtAffamato.setText(dati[1]);
+                txtAssetato.setText(dati[2]);
+                txtMangia.setText(dati[3]);
+                txtBevi.setText(dati[4]);
+                txtInventarioCorrente.setText(dati[5]);
+                txtInventarioMassimo.setText(dati[6]);
+                txtContaGiorno.setText(dati[7]);
+                
+                this.cibo = dati[3];
+                this.acqua = dati[4];
+                this.inventarioCorrente = dati[5];
+                this.inventarioMassimo = dati[6];
+                this.contaGiorno = Integer.parseInt(dati[7]);
+                
+                player.setVita(Integer.parseInt(dati[0]));
+                player.setFame(Integer.parseInt(dati[1]));
+                player.setSete(Integer.parseInt(dati[2]));
+                
+                this.personaggioImage = dati[8];
+                if (!this.personaggioImage.equals("null") && !this.personaggioImage.isEmpty()) {
+                    ImageIcon icon = new ImageIcon(getClass().getResource(this.personaggioImage));
+                    Image img = icon.getImage().getScaledInstance(140, 220, Image.SCALE_SMOOTH);
+                    labelPersonaggioScelto.setIcon(new ImageIcon(img));
+                }
+                
+                inventario.getInventario().clear();
+                String oggettiInventario = dati[9];
+                
+                if(!oggettiInventario.equals("vuoto")){
+                    String[] arrayOggetti = oggettiInventario.split(",");
+                    for(String oggetto : arrayOggetti){
+                        inventario.aggiungiOggetto(oggetto);
+                    }
+                }
+                System.out.println("Partita CSV caricata con successo");
+            }
+        } catch (IOException e) {
+            System.out.println("Errore durante il caricamento del file CSV");
+        }
+    }//GEN-LAST:event_BottoneCaricaCSVActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -779,11 +897,13 @@ public class Grafica extends javax.swing.JFrame {
     private javax.swing.JButton BottoneAbilitaSpeciale;
     private javax.swing.JButton BottoneAvanza;
     private javax.swing.JButton BottoneBevi;
+    private javax.swing.JButton BottoneCaricaCSV;
     private javax.swing.JButton BottoneCaricaPartita;
     private javax.swing.JButton BottoneControllaInventario;
     private javax.swing.JButton BottoneMangia;
     private javax.swing.JButton BottonePrendiOggetto;
     private javax.swing.JButton BottoneRiprendiPartita;
+    private javax.swing.JButton BottoneSalvaCSV;
     private javax.swing.JButton BottoneSalvaPartita;
     private javax.swing.JButton BottoneSceltaPersonaggio;
     private javax.swing.JButton BottoneUsaMedicine;
