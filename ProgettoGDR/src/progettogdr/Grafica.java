@@ -180,6 +180,7 @@ public class Grafica extends javax.swing.JFrame {
     
     public void mostraPanelSconfitta() {
         GameOver.setVisible(true);
+        txtArea.setVisible(false);
         BottoneSceltaPersonaggio.setVisible(false);
         BottoneBevi.setVisible(false);
         BottoneMangia.setVisible(false);
@@ -192,6 +193,7 @@ public class Grafica extends javax.swing.JFrame {
 
     public void mostraPanelVittoria() {
         lblVittoria.setVisible(true);
+        txtArea.setVisible(false);
         BottoneSceltaPersonaggio.setVisible(false);
         BottoneBevi.setVisible(false);
         BottoneMangia.setVisible(false);
